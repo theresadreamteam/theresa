@@ -8,6 +8,12 @@ services:
 
 addons:
   postgresql: '10'
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
+
+before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
