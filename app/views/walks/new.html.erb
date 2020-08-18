@@ -1,0 +1,14 @@
+<%= form_for @walk, url: {action: "create"}, html: {class: 
+"nifty_form"} do |f| %>
+  <%= f.label :title, 'Title: ' %>
+  <%= f.text_field :title %><br><br>
+  <%= f.label :description, 'Description: '%>
+  <%= f.text_area :description, size: "40x5" %><br><br>
+  <%= f.label :coordinates_start, 'Start of walk (coordinates): ' %>
+  <%= f.text_field :coordinates_start %><br><br>
+  <%= f.label :coordinates_end, 'End of walk (coordinates): ' %>
+  <%= f.text_field :coordinates_end %><br><br>
+  <%= f.label :distance, 'Length of walk (in km): ' %>
+  <%= f.text_field :distance %><br><br>
+  <%= f.submit "add this walk" %>
+<% end %>
