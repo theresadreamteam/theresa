@@ -10,4 +10,6 @@ bundle install
 rails db:reset
 rails db:migrate
 npm install
+rails active_storage:install
+rails db:migrate
 ```
