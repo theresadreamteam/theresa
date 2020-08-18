@@ -3,17 +3,19 @@ language: ruby
 rvm:
   - 2.6.5
 
+sudo: required 
+
 services:
   - postgresql
 
 addons:
   postgresql: '10'
   apt:
-    - google-chrome-stable
-    - chromium-chromedriver
+    # - google-chrome-stable
+    # - chromium-chromedriver
 
-before_script:
-  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
+# before_script:
+  # - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 
 script:
   - bundle install
