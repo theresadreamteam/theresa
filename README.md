@@ -11,3 +11,5 @@ rails db:reset (if refreshing a current database)
 rails db:migrate
 npm install
 ```
+
+### User Stories
