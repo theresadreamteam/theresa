@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
+  gem 'rubocop'
 end
 
 group :development do
