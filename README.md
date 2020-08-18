@@ -16,3 +16,6 @@ rails db:migrate
 ### User Stories
 
 ### Model
+
+### Testing Travis build
+This has only been added to test if I can get TravisCI running
