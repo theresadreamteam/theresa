@@ -7,7 +7,7 @@ Enjoying a Walk Near You.
 Run the following commands
 ```
 bundle install
-rails db:reset
+rails db:reset (if refreshing a current database)
 rails db:migrate
 npm install
 ```
