@@ -13,6 +13,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "bootstrap-sass": "^3.3.7"
   }
 }
