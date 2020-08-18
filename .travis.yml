@@ -9,14 +9,15 @@ services:
 addons:
   postgresql: '10'
   apt:
-    # - google-chrome-stable
-    # - chromium-chromedriver
+    - google-chrome-stable
+    - chromium-chromedriver
 
-# before_script:
-  # - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
+before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 
 script:
-  # - bundle install
+  - bundle install
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec
-  # - bundle exec rubocop --config .rubocop.yml
+  - bundle exec rubocop --config .rubocop.yml
+  - gulp build
