@@ -14,7 +14,9 @@ addons:
     # - google-chrome-stable
     # - chromium-chromedriver
 
-# before_script:
+before_script:
+  - npm install
+  - gulp build
   # - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 
 script:
