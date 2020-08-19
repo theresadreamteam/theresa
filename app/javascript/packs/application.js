@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import 'bootstrap'
+require("bootstrap").start()
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
