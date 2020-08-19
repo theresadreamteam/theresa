@@ -1,3 +1,7 @@
+<% if @walk.photo.attached? %>
+  <image src="<%=(url_for(@walk.photo))%>" width=100%>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @walk.title %>

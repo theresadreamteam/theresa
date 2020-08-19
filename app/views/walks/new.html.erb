@@ -1,5 +1,7 @@
 <%= form_for @walk, url: {action: "create"}, html: {class: 
 "nifty_form"} do |f| %>
+  <%= f.label :photo, 'Photo: ' %>
+  <%= f.file_field :photo %>
   <%= f.label :title, 'Title: ' %>
   <%= f.text_field :title %><br><br>
   <%= f.label :description, 'Description: '%>

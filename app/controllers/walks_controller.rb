@@ -19,13 +19,13 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params)
-
+    # @walk.photo.attach(params[:photo])
     @walk.save
     redirect_to @walk
   end
 
   private
     def walk_params
-      params.require(:walk).permit(:title, :description, :coordinates_start, :coordinates_end, :distance)
+      params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance)
     end
 end
