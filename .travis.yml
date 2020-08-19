@@ -3,12 +3,6 @@ language: ruby
 rvm:
   - 2.6.5
 
-os: osx
-
-# install: 
-#   - bundle install
-#   - rails db:migrate:reset
-
 services:
   - postgresql
 
@@ -22,6 +16,7 @@ before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 
 script:
+  - bundle install
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec
   - bundle exec rubocop --config .rubocop.yml
