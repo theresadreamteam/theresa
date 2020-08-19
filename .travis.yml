@@ -19,4 +19,3 @@ script:
   - bundle install
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec
-  - bundle exec rubocop --config .rubocop.yml
