@@ -5,9 +5,9 @@ rvm:
 
 os: osx
 
-install: 
-  - bundle install
-  - rails db:migrate:reset
+# install: 
+#   - bundle install
+#   - rails db:migrate:reset
 
 services:
   - postgresql
