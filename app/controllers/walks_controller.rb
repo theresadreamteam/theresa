@@ -4,7 +4,7 @@ class WalksController < ApplicationController
     @walk = Walk.find(params[:id])
   end
 
-  def all
+  def index
     @walks = Walk.all
     if @walks.count > 0
       @latitude = @walks[0].coordinates_start.split(',')[0]
