@@ -1,7 +1,4 @@
 class WalksController < ApplicationController
-  def show
-    @walk = Walk.find(params[:id])
-  end
 
   def index
     @walks = Walk.all
@@ -18,14 +15,39 @@ class WalksController < ApplicationController
     end
   end
 
+  def show
+    @walk = Walk.find(params[:id])
+  end
+
   def new
     @walk = Walk.new
+  end
+
+  def edit
+    @walk = Walk.find(params[:id])
   end
 
   def create
     @walk = Walk.new(walk_params)
     @walk.save
     redirect_to @walk
+  end
+
+  def update
+    @walk = Walk.find(params[:id])
+   
+    if @walk.update(walk_params)
+      redirect_to @walk
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @walk = Walk.find(params[:id])
+    @walk.destroy
+ 
+    redirect_to walks_path
   end
 
   private
