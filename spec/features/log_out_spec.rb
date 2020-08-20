@@ -13,7 +13,7 @@ RSpec.describe 'Theresa', type: :system do
       click_on 'Login'
       click_on 'logout'
       expect(page).to have_content 'Log in'
-      expect(page).to have_content 'Sign in'
+      expect(page).to have_content 'Sign up'
     end
   end
 end
