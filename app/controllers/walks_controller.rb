@@ -5,7 +5,16 @@ class WalksController < ApplicationController
 
   def all
     @walks = Walk.all
-    walks = '[{:id=>1, :name=>"asdf", :description=>"asdf", :latitude=>"51.533136", :longitude=>"-0.129538", :postcode=>"NW11HD"}, {:id=>2, :name=>"asdf", :description=>"asdf", :latitude=>nil, :longitude=>nil, :postcode=>"asdf"}, {:id=>3, :name=>"asdf", :description=>"asdf", :latitude=>nil, :longitude=>nil, :postcode=>"sdffg"}, {:id=>4, :name=>"asdf", :description=>"asdf", :latitude=>"40.5", :longitude=>"20.5", :postcode=>"asdf"}]'
+    if @walks.length > 0 
+      @latitude = @walks[0].coordinates_start.split(',')[0]
+      @longitude = @walks[0].coordinates_start.split(',')[-1]
+      @walkywalks =  []
+      @walks.each do |walk|
+        @walkywalks << {latitude: walk.coordinates_start.split(',')[0], longitude: walk.coordinates_start.split(',')[-1]}
+      end
+    else
+      puts "There's no walks yet"
+    end
   end
 
   def new
