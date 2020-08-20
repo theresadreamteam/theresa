@@ -1,4 +1,5 @@
 class WalksController < ApplicationController
+  skip_before_action :authorized, only: [:all]
   def show
     @walk = Walk.find(params[:id])
   end

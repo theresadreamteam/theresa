@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create, :welcome]
+  skip_before_action :authorized, only: [:new, :create]
   def new
   end
 
@@ -16,6 +16,9 @@ class SessionsController < ApplicationController
   def login
   end
 
-  def welcome
+  def logout
+    session[:user_id] = nil
+    redirect_to '/'
   end
+
 end
