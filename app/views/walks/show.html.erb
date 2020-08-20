@@ -27,6 +27,12 @@
   <%= @walk.distance %> km
 </p>
 
+<%= link_to 'Edit', edit_walk_path(@walk) %> |
+<%= link_to 'Delete', walk_path(@walk),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', walks_path %>
+                    
 <h2>Comments</h2>
 <% @walk.comments.each do |comment| %>
   <p>
