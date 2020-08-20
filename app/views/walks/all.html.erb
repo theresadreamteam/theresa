@@ -1,19 +1,19 @@
 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd">
   <div class = "row">
-    <a class="navbar-brand" href="#">
-      <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+    <a class="navbar-brand" href="/">
+      <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
     </a>
     <% if  session[:user_id] == nil %>
     <div class="col-sm-1">
-    <a type="button" class="btn btn-default" href="/login">Log in</a>
+    <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
     </div>
     <div class="col-sm-1">
-    <a type="button" class="btn btn-default" href="<%= new_user_path %>">Sign up</a>
+    <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
     </div>
     <% else %>
     <div class="col-sm-1">
-    <a type="button" class="btn btn-default" href="/logout">Log out</a>
+    <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
     </div>
     <% end %>
   </div>

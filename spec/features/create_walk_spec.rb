@@ -1,9 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe 'Theresa', type: :system do
-  xdescribe 'create page' do
+  describe 'create page' do
     it 'enables you to add a new walk' do
+      ### Signup
       visit ('/')
+      click_on 'signup'
+      fill_in 'Username', with: 'test'
+      fill_in 'Password', with: 'test'
+      click_on 'signup'
+      ### Login
+      fill_in 'Username', with: 'test'
+      fill_in 'Password', with: 'test'
+      click_on 'Login'
+      ### Add Walk
       click_on 'add walk'
       fill_in 'walk_title', with: 'Canalside walk'
       fill_in 'walk_description', with: 'A beautiful long walk by the water'
