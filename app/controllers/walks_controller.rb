@@ -14,7 +14,6 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params)
-    # @walk.photo.attach(params[:photo])
     @walk.save
     redirect_to @walk
   end
