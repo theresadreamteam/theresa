@@ -4,7 +4,7 @@ orbs:
 
 dependencies:
   pre:
-    - gem install bundler -v 2.1.4
+    - gem install bundler -v '2.1.4'
 
 jobs:
   build:
