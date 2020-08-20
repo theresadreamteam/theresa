@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Theresa', type: :system do
-  describe 'create page' do
+  xdescribe 'create page' do
     it 'enables you to add a new walk' do
       visit ('/')
       click_on 'add walk'

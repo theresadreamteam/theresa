@@ -5,7 +5,6 @@ class WalksController < ApplicationController
 
   def all
     @walks = Walk.all
-    p @walks.count
     if @walks.count > 0
       @latitude = @walks[0].coordinates_start.split(',')[0]
       @longitude = @walks[0].coordinates_start.split(',')[-1]
@@ -25,7 +24,6 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params)
-    # @walk.photo.attach(params[:photo])
     @walk.save
     redirect_to @walk
   end
