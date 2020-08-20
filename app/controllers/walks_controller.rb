@@ -5,8 +5,14 @@ class WalksController < ApplicationController
 
   def all
     @walks = Walk.all
-    @latitude = @walks[0].coordinates_start.split(',')[0]
-    @longitude = @walks[0].coordinates_start.split(',')[-1]
+    p @walks.count
+    if @walks.count > 0
+      @latitude = @walks[0].coordinates_start.split(',')[0]
+      @longitude = @walks[0].coordinates_start.split(',')[-1]
+    else
+      @latitude = 41.45
+      @longitude = -0.05
+    end
     @walkywalks =  []
     @walks.each do |walk|
       @walkywalks << {latitude: walk.coordinates_start.split(',')[0], longitude: walk.coordinates_start.split(',')[-1]}
