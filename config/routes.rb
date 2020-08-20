@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :walks
+  resources :walks do
+    resources :comments
+  end
   root 'walks#all'
 end

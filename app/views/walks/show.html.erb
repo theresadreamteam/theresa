@@ -26,3 +26,30 @@
   <strong>Length of walk:</strong>
   <%= @walk.distance %> km
 </p>
+
+<h2>Comments</h2>
+<% @walk.comments.each do |comment| %>
+  <p>
+    <strong><%= comment.commenter %> says </strong>
+  </p>
+  <p>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @walk, @walk.comments.build ],
+local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+  <%= form.submit %>
+  <button type="form.submit">add comment</button>
+  </p>
+<% end %>
