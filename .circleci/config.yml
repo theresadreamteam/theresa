@@ -4,10 +4,7 @@ orbs:
 
 dependencies:
   pre:
-    - cat Gemfile.lock | grep -A 1 "BUNDLED WITH"
-      BUNDLED WITH
-      2.1.4
-    - gem install bundler -v '2.1.4'
+    - gem update --system
 
 jobs:
   build:
