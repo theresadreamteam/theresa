@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-light" style="background-color: #e3f2fd">
   <div class = "row">
     <a class="navbar-brand" href="/">
@@ -19,25 +18,34 @@
   </div>
 </nav>
 
-<div class="jumbotron text-center">
-  <h1>Theresa</h1>
-  <p>For Walky walk walks</p>
-
+<div class="headerBlock">
+  <h1 id="headerBlockTitle">Theresa</h1>
+  <p id= "headerBlockSubTitle">For Walky walk walks</p>
+  <a href="#all-maps" class="link scrollTo">
+    <button type="button" class="btn btn-default">See Walks</button>
+  </span></a>
+  
 </div>
 
-<div class="background" width=100% z-index=-1>
-  <%= image_tag('hero2.jpg', :size => '100%xauto')%>
-</div>
+<section class="hero-block-image container-fluid" height = 100% z-index=-1>
+  <img style="width:100%" src="https://instagram.flhr2-2.fna.fbcdn.net/v/t51.2885-15/e35/25023922_1582299001846151_5683933159448641536_n.jpg?_nc_ht=instagram.flhr2-2.fna.fbcdn.net&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F">
+  
+</section>
+
 
 <br>
 <br>
 <br>
 <br>
 
-<div class="container">
+
+
+<div class="container" id="all-maps">
+
   <div class="row">
     <div class="col-sm-12">
       <p>Select Location</p>
+      <button type="button" class="btn btn-default">Default</button>
       <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
       <%= react_component 'MapRender', name: 'India', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9931.096460395553!2d-0.073328!3d51.51736!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1597762657115!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
