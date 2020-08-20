@@ -55,8 +55,4 @@ class MapRender extends React.Component {
 
   export default GoogleApiWrapper ({
       apiKey: "Insert API KEY HERE"
-  };
-
-
-
-})(MapRender);
+  })(MapRender);
