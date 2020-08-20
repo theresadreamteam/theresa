@@ -1,19 +1,5 @@
-<%= form_for @walk, url: {action: "create"}, html: {class: 
+<%= form_for @walk, url: {action: "update"}, html: {class: 
 "nifty_form"} do |f| %>
-  <% if @walk.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@walk.errors.count, "error") %> prohibited
-        this walk from being saved:
-      </h2>
-      <ul>
-        <% @walk.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <%= f.label :photo, 'Photo: ' %>
   <%= f.file_field :photo %>
   <%= f.label :title, 'Title: ' %>
@@ -26,7 +12,5 @@
   <%= f.text_field :coordinates_end %><br><br>
   <%= f.label :distance, 'Length of walk (in km): ' %>
   <%= f.text_field :distance %><br><br>
-  <%= f.submit "add this walk" %>
+  <%= f.submit "Save" %>
 <% end %>
-
-<%= link_to 'Back', walks_path %>

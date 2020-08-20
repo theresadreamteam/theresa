@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   resources :walks
-  root 'walks#all'
+  root 'walks#index'
 end
