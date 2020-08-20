@@ -11,7 +11,6 @@ RSpec.describe 'Theresa', type: :system do
       fill_in 'walk_coordinates_end', with: '51.544514, -0.023015'
       fill_in 'walk_distance', with: '5'
       click_on 'add this walk'
-      visit ('/walks/1')
       fill_in 'comment_body', with: 'This one really is lovely'
       fill_in 'comment_commenter', with: 'Warbling Walker'
       click_on 'add comment'
