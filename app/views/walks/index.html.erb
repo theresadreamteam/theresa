@@ -1,3 +1,22 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd">
+  <div class = "row">
+    <a class="navbar-brand" href="/">
+      <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
+    </a>
+    <% if  session[:user_id] == nil %>
+    <div class="col-sm-1">
+    <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
+    </div>
+    <div class="col-sm-1">
+    <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
+    </div>
+    <% else %>
+    <div class="col-sm-1">
+    <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
+    </div>
+    <% end %>
+  </div>
+</nav>
 
 <div class="headerBlock">
   <h1 id="headerBlockTitle">Theresa</h1>
@@ -13,10 +32,12 @@
   
 </section>
 
+
 <br>
 <br>
 <br>
 <br>
+
 
 
 <div class="container" id="all-maps">
@@ -25,7 +46,6 @@
     <div class="col-sm-12">
       <p>Select Location</p>
       <button type="button" class="btn btn-default">Default</button>
-
       <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
       <%= react_component 'MapRender', name: 'India', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9931.096460395553!2d-0.073328!3d51.51736!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1597762657115!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>

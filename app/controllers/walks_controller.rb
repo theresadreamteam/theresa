@@ -1,5 +1,7 @@
 class WalksController < ApplicationController
 
+  skip_before_action :authorized, only: [:index]
+
   def index
     @walks = Walk.all
     if @walks.count > 0
