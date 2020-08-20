@@ -1,5 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Walk, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject {
+    described_class.new(title: "First Walk",
+                        description: "Beautiful Walk",
+                        coordinates_start: "1.000 , 2.000")
+  }
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
+  end
+
+  it "is not valid with no title" do
+    subject.title = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is is not valid with no description" do
+    subject.description = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid with no start_coordinate" do
+    subject.coordinates_start = nil
+    expect(subject).to_not be_valid
+  end
+
 end

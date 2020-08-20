@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+require('dotenv').config();
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-const googlemapkey = process.env.REACT_APP_GOOGLE_MAP_KEY;
-console.log(process.env)
-console.log(googlemapkey)
+const { REACT_APP_GOOGLE_MAP_KEY } = process.env;
+
+console.log('Enviroment Key');
+console.log(process.env.NODE_ENV);
+console.log('Google Map Key'+REACT_APP_GOOGLE_MAP_KEY)
 
 class MapRender extends React.Component {
 
@@ -54,9 +57,5 @@ class MapRender extends React.Component {
   };
 
   export default GoogleApiWrapper ({
-      apiKey: "Insert API KEY HERE"
-  };
-
-
-
-})(MapRender);
+      apiKey: googlemapkey
+  })(MapRender);
