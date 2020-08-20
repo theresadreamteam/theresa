@@ -6,6 +6,25 @@ console.log(process.env)
 console.log(googlemapkey)
 
 class MapRender extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      walks: this.props.walks
+    }
+  }
+
+  displayMarkers = () => {
+    return this.state.walks.map((walk, index) => {
+      return <Marker key={index} id={index} position={{
+       lat: walk.latitude,
+       lng: walk.longitude
+     }}
+     onClick={() => console.log("You clicked me! index: "+index)} />
+    })
+  }
+
   render () {
     return (
       <div>
@@ -16,18 +35,28 @@ class MapRender extends React.Component {
           zoom={8}
           class = "mapStyles"
           initialCenter={{ lat: 51.51736, lng: -0.073328}}
-        >
-        <Marker position={{ lat: 51.51736, lng: -0.073328}} />
+          >
+
+          {this.displayMarkers()}
+          <Marker position={{ lat: this.props.latitude, lng: this.props.longitude}} />
+
         </Map>
       </div>
     );
   }
 }
 
-MapRender.propTypes = {
-  name: PropTypes.string
-};
+  MapRender.propTypes = {
+    name: PropTypes.string,
+    latitude: PropTypes.integer,
+    longitude: PropTypes.integer,
+    walks: PropTypes.array
+  };
 
-export default GoogleApiWrapper ({
-  apiKey: "Insert API KEY HERE"
+  export default GoogleApiWrapper ({
+      apiKey: "Insert API KEY HERE"
+  };
+
+
+
 })(MapRender);
