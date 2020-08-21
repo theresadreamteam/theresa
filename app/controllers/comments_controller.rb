@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   def create
     @walk = Walk.find(params[:walk_id])
     @comment = @walk.comments.create(comment_params.merge(user_id: current_user.id))
-    @comment.save
     redirect_to walk_path(@walk)
   end
 
