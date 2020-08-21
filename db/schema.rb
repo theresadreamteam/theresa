@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_144236) do
+ActiveRecord::Schema.define(version: 2020_08_21_094553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2020_08_20_144236) do
     t.bigint "walk_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_id"
+    t.string "integer"
     t.index ["walk_id"], name: "index_comments_on_walk_id"
   end
 
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_08_20_144236) do
     t.string "link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_id"
+    t.string "integer"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

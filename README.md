@@ -19,6 +19,12 @@ bundle install
 npm install
 ```
 
+Migrating Heroku DB
+```
+heroku run rake db:migrate --app cryptic-brook-48460
+```
+
+
 ### User Stories
 
 ### Model
