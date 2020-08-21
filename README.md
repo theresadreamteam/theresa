@@ -19,11 +19,13 @@ bundle install
 npm install
 ```
 
-Migrating Heroku DB
+Updating Heroku DB
+It will update on its own if Circle CI passes. 
+
+The command to update the database on Heroku is as follows:
 ```
 heroku run rake db:migrate --app cryptic-brook-48460
 ```
-
 
 ### User Stories
 
