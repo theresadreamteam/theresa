@@ -31,6 +31,7 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params.merge(user_id: current_user.id))
+    @walk.save
     redirect_to @walk
   end
 
