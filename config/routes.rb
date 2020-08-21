@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#logout'
 
-  resources :walks
+  resources :walks do
     resources :comments
+  end
 
   root 'walks#index'
 
