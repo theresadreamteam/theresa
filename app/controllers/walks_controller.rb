@@ -8,15 +8,16 @@ class WalksController < ApplicationController
   def index
     @walks = Walk.all
     if @walks.count > 0
-      @latitude = @walks[0].coordinates_start.split(',')[0]
-      @longitude = @walks[0].coordinates_start.split(',')[-1]
+      @latitude = @walks[0].coordinates_start.split(',')[0].tr("{","").to_f
+      p @latitude
+      @longitude = @walks[0].coordinates_start.split(',')[-1].tr("}","").to_f
     else
       @latitude = 41.45
       @longitude = -0.05
     end
     @walkywalks =  []
     @walks.each do |walk|
-      @walkywalks << {latitude: walk.coordinates_start.split(',')[0], longitude: walk.coordinates_start.split(',')[-1]}
+      @walkywalks << {latitude: walk.coordinates_start.split(',')[0].tr("{","").to_f, longitude: walk.coordinates_start.split(',')[-1].tr("}","").to_f}
     end
   end
 
@@ -33,7 +34,7 @@ class WalksController < ApplicationController
   end
 
   def create
-    @walk = Walk.create(walk_params.merge(user_id: current_user.id))
+    @walk = Walk.new(walk_params.merge(user_id: current_user.id))
     url = URI("https://api.postcodes.io/random/postcodes")
 
     http = Net::HTTP.new(url.host, url.port)
