@@ -26,6 +26,8 @@
   <strong>Length of walk:</strong>
   <%= @walk.distance %> km
 </p>
+<p> Posted by <%= @walk.user.username %> </p>
+
 
 <%= link_to 'Edit', edit_walk_path(@walk) %> |
 <%= link_to 'Delete', walk_path(@walk),
@@ -36,7 +38,7 @@
 <h2>Comments</h2>
 <% @walk.comments.each do |comment| %>
   <p>
-    <strong><%= comment.commenter %> says </strong>
+    <strong><%= comment.user.username %> says </strong>
   </p>
   <p>
     <%= comment.body %>
