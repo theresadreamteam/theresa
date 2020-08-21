@@ -9,4 +9,18 @@ module FirstWalkHelper
     fill_in 'walk_distance', with: '5'
     click_on 'add this walk'
   end
+
+  def sign_up
+    visit ('/')
+    click_on 'signup'
+    fill_in 'Username', with: 'test'
+    fill_in 'Password', with: 'test'
+    click_on 'signup'
+  end
+
+  def sign_in
+      fill_in 'Username', with: 'test'
+      fill_in 'Password', with: 'test'
+      click_on 'Login'
+  end
 end
