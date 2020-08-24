@@ -35,6 +35,11 @@ heroku run rake db:migrate --app cryptic-brook-48460
 RSpec
 `bundle exec rspec` to run local tests
 
+To view coverage
+```
+open coverage/index.html
+```
+
 CircleCI
 run `gem update --system` to get the error 
 `find_spec_for_exe': Could not find 'bundler' (2.1.4)` to go?

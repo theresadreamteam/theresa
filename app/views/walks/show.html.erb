@@ -26,6 +26,8 @@
   <strong>Length of walk:</strong>
   <%= @walk.distance %> km
 </p>
+
+<p><small>Tags: <%= raw @walk.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small</p>
 <p> Posted by <%= @walk.user.username %> </p>
 
 

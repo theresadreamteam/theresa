@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
 
   root 'walks#index'
+  get 'tags/:tag', to: 'walks#index', as: :tag
 
 end

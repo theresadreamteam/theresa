@@ -6,6 +6,7 @@ class WalksController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
   def index
+    params[:tag] ? @walks = Walk.tagged_with(params[:tag]) :
     @walks = Walk.all
     if @walks.count > 0
       @latitude = @walks[0].coordinates_start.split(',')[0].tr("{","").to_f
@@ -72,6 +73,6 @@ class WalksController < ApplicationController
 
   private
     def walk_params
-      params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance)
+      params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
     end
 end

@@ -26,6 +26,8 @@
   <%= f.text_field :coordinates_end %><br><br>
   <%= f.label :distance, 'Length of walk (in km): ' %>
   <%= f.text_field :distance %><br><br>
+  <%= f.label :tag_ids, "Tags:" %>
+  <%= f.text_field :tag_ids, value: @walk.tags.all %>
   <%= f.submit "add this walk" %>
 <% end %>
 
