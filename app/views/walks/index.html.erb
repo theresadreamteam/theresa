@@ -69,6 +69,10 @@
 
           <h5><%=walk.title%></h5>
           <p><%=walk.description%></p>
+          <span class='parent-likes'>
+          <span class="like_count" <%=walk.id%>'>
+          <%= walk.get_likes.size %> &#127752
+        </span>
           <a type="button" class="btn btn-info btn-block" href="/walks/<%= walk.id %>" >More Info</a>
         </div>
       <%end%>
