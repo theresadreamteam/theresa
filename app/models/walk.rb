@@ -1,7 +1,9 @@
 class Walk < ApplicationRecord
   include Rails.application.routes.url_helpers
   belongs_to :user, optional: true
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  validates :title, presence: true,
+                    length: { minimum: 5 }
   has_one_attached :photo
   validates_presence_of :title
   validates_presence_of :description

@@ -43,6 +43,12 @@
   <p>
     <%= comment.body %>
   </p>
+
+  <p>
+  <%= link_to 'Delete Comment', [comment.walk, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
 <% end %>
 
 <h2>Add a comment:</h2>
