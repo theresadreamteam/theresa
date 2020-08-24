@@ -1,5 +1,6 @@
 class Walk < ApplicationRecord
   include Rails.application.routes.url_helpers
+  acts_as_votable
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
   validates :title, presence: true,

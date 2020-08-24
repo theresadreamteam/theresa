@@ -4,6 +4,7 @@ require 'net/http'
 class WalksController < ApplicationController
 
   skip_before_action :authorized, only: [:index]
+  # respond_to :js, :html, :json
 
   def index
     @walks = Walk.all
@@ -68,6 +69,15 @@ class WalksController < ApplicationController
     @walk.destroy
  
     redirect_to walks_path
+  end
+
+  def like
+    @walk = Walk.find(params[:id])
+    if params[:format] == "like"
+      @walk.liked_by current_user
+    elsif params[:format] == "unlike"
+      @walk.unliked_by current_user
+    end
   end
 
   private

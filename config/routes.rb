@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :walks do
     resources :comments
+    member do
+      put "like" => "walks#like"
+    end
   end
 
   root 'walks#index'
