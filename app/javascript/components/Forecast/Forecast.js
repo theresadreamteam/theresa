@@ -5,6 +5,8 @@ import classes from './Forecast.module.css';
 const Forecast = () => {
   let [city, setCity] = useState('');
   let [unit, setUnit] = useState('metric');
+  let [lon, setLon] = useState('');
+  let [lat, setLat] = useState('');
   let [responseObj, setResponseObj] = useState({});
   let [error, setError] = useState(false);
   let [loading, setLoading] = useState(false);
@@ -13,23 +15,17 @@ const Forecast = () => {
 
   function getForecast(e) {
     e.preventDefault();
-    
-    if (city.length === 0) {
-      return setError(true);
-    }
 
     setError(false);
     setResponseObj({});
 
     setLoading(true);
 
-    
-
-    fetch(`https://community-open-weather-map.p.rapidapi.com/weather?units=${unit}&q=${uriEncodedCity}`, {
+    fetch(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${lat}&lon=${lon}&units=${unit}`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-        "x-rapidapi-key": "e97f06650amshab8661718d84320p1baa9bjsn88c24f2a99b0"
+        "x-rapidapi-key": WEATHER_API
       }
     })
       .then(response => response.json())
@@ -53,13 +49,21 @@ const Forecast = () => {
       <h2>find current weather conditions</h2>
       <form onSubmit={getForecast}>
         <input
-          type="text"
-          placeholder="enter city"
+          type="number"
+          placeholder="enter latitude"
           maxLength="50"
           className={classes.TextInput}
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          />
+          value={lat}
+          onChange={(e) => setLat(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="enter longitude"
+          maxLength="50"
+          className={classes.TextInput}
+          value={lon}
+          onChange={(e) => setLon(e.target.value)}
+        />
           <label className={classes.Radio}>
             <input
               type="radio"

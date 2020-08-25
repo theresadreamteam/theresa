@@ -3,11 +3,6 @@
 <% end %>
 
 <p>
-  <strong>The weather here today is </strong>
-  <%= react_component 'WalkWeather' %>
-</p>
-
-<p>
   <strong>Title:</strong>
   <%= @walk.title %>
 </p>
@@ -33,12 +28,15 @@
 </p>
 <p> Posted by <%= @walk.user.username %> </p>
 
-
 <%= link_to 'Edit', edit_walk_path(@walk) %> |
 <%= link_to 'Delete', walk_path(@walk),
               method: :delete,
               data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', walks_path %>
+
+<p>
+  <%= react_component 'WalkWeather' %>
+</p>
                     
 <h2>Comments</h2>
 <% @walk.comments.each do |comment| %>
