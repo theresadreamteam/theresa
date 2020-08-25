@@ -1,0 +1,22 @@
+<%= form_for @trip, url: {action: "create"}, html: {class: 
+"nifty_form"} do |f| %>
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@trip.errors.count, "error") %> prohibited
+        this trip from being saved:
+      </h2>
+      <ul>
+        <% @trip.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, 'Title: ' %>
+  <%= f.text_field :name %><br><br>
+  <%= f.submit "add this trip" %>
+  <% end %>
+
+<%= link_to 'Back', '/' %>
