@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :tags
   end
 
+  resources :trips do
+  end
+
   root 'walks#index'
 
 end
