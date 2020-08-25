@@ -8,7 +8,7 @@ class MapRender extends React.Component {
 
   constructor(props) {
     super(props);
-
+    
     this.state = {
       walks: this.props.walks,
       mapState : {
@@ -57,6 +57,20 @@ class MapRender extends React.Component {
     tempState.mapState.latitude = this.props.latitude;
     this.setState({tempState});
   }
+
+  setNewLocation = (latitude,longitude) => {
+    let tempState = this.state;
+    tempState.mapState.longitude = longitude;
+    tempState.mapState.latitude = latitude;
+    this.setState({tempState});
+  }
+
+  resetmap = (latitude,longitude) => {
+    let tempState = this.state
+    tempState.mapState.longitude = longitude;
+    tempState.mapState.latitude = latitude;
+    this.setState({tempState});
+    }
 
   calculateDistance(pointA, pointB) {
 
@@ -134,6 +148,50 @@ class MapRender extends React.Component {
     })
   }
 
+  getcoordinate(event) {
+    
+    var HttpClient = function() {
+      this.get = function(aUrl, aCallback) {
+          var anHttpRequest = new XMLHttpRequest();
+          anHttpRequest.onreadystatechange = function() { 
+              if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                  aCallback(anHttpRequest.responseText);
+          }
+  
+          anHttpRequest.open( "GET", aUrl, true );            
+          anHttpRequest.send( null );
+      }
+    }
+
+    console.log(event.target.value.length > 6)
+      if (event.target.value.length >= 5) {
+        var testweb = "http://api.postcodes.io/postcodes/"+event.target.value+"/validate"
+        var website = "http://api.postcodes.io/postcodes/"+event.target.value
+        console.log(website)
+
+        new HttpClient().get(testweb, function(response) {
+          console.log(response);
+          if (response != '{"status":200,"result":true}') {
+            return
+          }
+        })
+
+        new HttpClient().get(website, function(response) {
+              console.log(response)
+              if (response.split(",")[8].split(":")[1] > 0) {
+                console.log("Latitude: "+response.split(",")[8].split(":")[1])
+                console.log("Longitude:"+response.split(",")[7].split(":")[1])
+                this.resetmap(response.split(",")[8].split(":")[1],response.split(",")[7].split(":")[1])
+              }
+          })
+      }
+        
+        
+    
+      
+      
+    }
+
   render () {
     return (
       <React.Fragment>
@@ -155,9 +213,17 @@ class MapRender extends React.Component {
                 value={this.state.mapState.circle.radius/100000+" hrs"}
                 disabled={true}
               />
+              <br></br>
               <ButtonGroup aria-label="Reset Location">
+              
+              <input
+                type="text"
+                name="new coordinates"
+                value={this.state.postcode}
+                onChange={this.getcoordinate.bind(this)}
+                disabled={false}
+              />
               <Button onClick={() => this.setLocation()}>Reset Location</Button>
-              <Button onClick={() => this.setLocation()}>Display All Walks</Button>
             </ButtonGroup>
           </Row>
           <br></br>
