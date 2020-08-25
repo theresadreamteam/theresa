@@ -84,6 +84,6 @@ class WalksController < ApplicationController
 
   private
     def walk_params
-      params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance)
+      params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance, :tag_list)
     end
 end
