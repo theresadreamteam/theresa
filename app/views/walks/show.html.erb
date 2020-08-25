@@ -58,6 +58,10 @@
               method: :delete,
               data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', walks_path %>
+
+<p>
+  <%= react_component 'WalkWeather' %>
+</p>
                     
 <h2>Comments</h2>
 <% @walk.comments.each do |comment| %>
