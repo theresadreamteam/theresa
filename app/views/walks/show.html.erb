@@ -33,6 +33,13 @@
   <%= @walk.get_likes.size %> &#127752
 </span>
 
+<p>
+  Tags:
+  <% @walk.tags.each do |tag| %>
+    <%= link_to tag.name, walk_tag_path(tag) %>
+  <% end %>
+</p>
+
 <a>
   <% if current_user.liked? @walk %>
     <div> <%= link_to like_walk_path(@walk, 'unlike'), class: "liked-btn",

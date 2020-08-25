@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     member do
       put "like" => "walks#like"
     end
+
+  resources :tags
   end
 
   root 'walks#index'
