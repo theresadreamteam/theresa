@@ -55,13 +55,7 @@
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <img src='https://www.malmesbury.com/media/k2/items/cache/e293f59f4ae0fed75a859fdf17db3e7b_XL.jpg' class="img-thumbnail rounded mx-auto d-block">
-        <h5>Walk in the Wiltshire</h5>
-        <p>This is a beautiful walk, come and enjoy Wiltshire sun on a sunny day...</p>
-        <button type="button" class="btn btn-info btn-block">More Info</button>
-    </div>
+  
       <%@walks.each do |walk|%>
         <div class ="col-sm-4">
           <% if walk.photo.attached? %>
