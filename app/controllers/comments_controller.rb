@@ -5,6 +5,13 @@ class CommentsController < ApplicationController
     redirect_to walk_path(@walk)
   end
 
+  def destroy
+    @walk = Walk.find(params[:walk_id])
+    @comment = @walk.comments.find(params[:id])
+    @comment.destroy
+    redirect_to walk_path(@walk)
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:commenter, :body)

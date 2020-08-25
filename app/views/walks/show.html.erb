@@ -28,6 +28,31 @@
 </p>
 <p> Posted by <%= @walk.user.username %> </p>
 
+<span class='parent-likes'>
+  <span class="like_count" <%=@walk.id%>'>
+  <%= @walk.get_likes.size %> &#127752
+</span>
+
+<p>
+  Tags:
+  <% @walk.tags.each do |tag| %>
+    <%= link_to tag.name, walk_tag_path(tag) %>
+  <% end %>
+</p>
+
+<a>
+  <% if current_user.liked? @walk %>
+    <div> <%= link_to like_walk_path(@walk, 'unlike'), class: "liked-btn",
+    method: :put, remote: :true do %> Liked </div>
+  <% end%>
+  <% else %>
+    <div> <%= link_to like_walk_path(@walk, 'like'), class: "like-btn",
+    method: :put, remote: :true do %> Like </div>
+<% end%>
+<% end%>
+<a>
+</span>
+
 <%= link_to 'Edit', edit_walk_path(@walk) %> |
 <%= link_to 'Delete', walk_path(@walk),
               method: :delete,
@@ -46,6 +71,12 @@
   <p>
     <%= comment.body %>
   </p>
+
+  <p>
+  <%= link_to 'Delete Comment', [comment.walk, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
 <% end %>
 
 <h2>Add a comment:</h2>

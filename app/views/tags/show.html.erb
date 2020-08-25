@@ -1,0 +1,7 @@
+<h1>Walks Tagged with <%= @tag.name %></h1>
+
+<ul>
+  <% @tag.walks.each do |walk| %>
+    <li><%= link_to walk.title, walk_path(walk) %></li>
+  <% end %>
+</ul>
