@@ -7,10 +7,6 @@ class TrippingsController < ApplicationController
   end
 
   def create
-    walk_id = tripping_params[:walk_id]
-    trip_id = tripping_params[:trip_id]
-    # trip_id.each do |trip_id|
-    # @tripping = Tripping.new(walk_id,trip_id)
     @tripping = Tripping.new(tripping_params)
     @tripping.save
     # end
@@ -20,6 +16,6 @@ class TrippingsController < ApplicationController
   private
 
   def tripping_params
-    params.permit(:walk_id, :trip_id)
+    params.require(:tripping).permit(:trip_id,:walk_id)
   end
 end
