@@ -4,6 +4,10 @@ class TripsController < ApplicationController
   end
 
   def create
+    @trip = Trip.create(trip_params.merge(user_id: current_user.id))
+    p @trip
+    @trip.save
+    redirect_to '/trips'
   end
 
   def index
@@ -31,9 +35,9 @@ class TripsController < ApplicationController
     redirect_to walk_path(@walk)
   end
 
-  # private
-  # def comment_params
-  #   params.require(:tag).permit(:commenter, :body)
-  # end
+  private
+  def trip_params
+    params.require(:trip).permit(:name)
+  end
 
 end
