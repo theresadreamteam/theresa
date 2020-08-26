@@ -5,6 +5,7 @@
       <div class ="col-sm-4">
       <% trip.trippings.each do |tripping| %>
           <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+          <br>
       <% end %>
       </div>
   </div>
