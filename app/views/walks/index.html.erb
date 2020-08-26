@@ -1,23 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #e3f2fd">
-  <div class = "row">
-    <a class="navbar-brand" href="/">
-      <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
-    </a>
-    <% if  session[:user_id] == nil %>
-    <%= session[:user_id] %>
-    <div class="col-sm-1">
-    <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
-    </div>
-    <div class="col-sm-1">
-    <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
-    </div>
-    <% else %>
-    <div class="col-sm-1">
-    <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
-    </div>
-    <% end %>
-  </div>
-</nav>
+
 
 <div class="headerBlock">
   <h1 id="headerBlockTitle">Theresa</h1>
@@ -27,19 +8,36 @@
   </span></a>
   
 </div>
+<%# background image %>
+<div class="parallax">
 
-<section class="hero-block-image container-fluid" height = 100% z-index=-1>
-  <img style="width:100%" src="https://instagram.flhr2-2.fna.fbcdn.net/v/t51.2885-15/e35/25023922_1582299001846151_5683933159448641536_n.jpg?_nc_ht=instagram.flhr2-2.fna.fbcdn.net&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F">
-  
-</section>
-
+<%# nav bar at top of page %>
+    <nav class="navbar navbar-light" style="background-color: rgba(0,0,0,0)">
+      <div class = "row">
+        <a class="navbar-brand" href="/">
+          <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
+        </a>
+        <% if  session[:user_id] == nil %>
+        <%= session[:user_id] %>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
+        </div>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
+        </div>
+        <% else %>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
+        </div>
+        <% end %>
+      </div>
+  </nav>
+</div>
 
 <br>
 <br>
 <br>
 <br>
-
-
 
 <div class="container" id="all-maps">
 

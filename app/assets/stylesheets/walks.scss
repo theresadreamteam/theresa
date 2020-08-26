@@ -1,14 +1,13 @@
 // Place all the styles related to the Walks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+html, body {
+  height: 100%;
+}
 
 .mapStyles {
   width: '100%';
   height: '100%'
-}
-
-.backgroundImage {
-  width: '100%';
 }
 
 .headerBlock {
@@ -25,4 +24,24 @@
 
 #headerBlockSubTitle {
   font-size: 36px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("https://instagram.flhr2-2.fna.fbcdn.net/v/t51.2885-15/e35/25023922_1582299001846151_5683933159448641536_n.jpg?_nc_ht=instagram.flhr2-2.fna.fbcdn.net&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F");
+
+  /* Set a specific height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .parallax {
+    background-attachment: scroll;
+  }
 }
