@@ -36,10 +36,11 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params.merge(user_id: current_user.id))
-    
-    if @walk.coordinates_start == nil
-
+    p @walk.coordinates_start
+    if @walk.coordinates_start == ""
+      p "Coordinates is nil!"
       random_coordinates(@walk)
+      p "we should have refresed the coordinates"
     end
     @walk.save
     redirect_to @walk
@@ -78,7 +79,7 @@ class WalksController < ApplicationController
       params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance, :tag_list)
     end
 
-    def random_coordinates
+    def random_coordinates(walk)
       url = URI("https://api.postcodes.io/random/postcodes")
 
       http = Net::HTTP.new(url.host, url.port)
@@ -92,6 +93,7 @@ class WalksController < ApplicationController
       longitude = response_text[7].split(":")[1]
       latitude = response_text[8].split(":")[1]
       coordinates = "{#{latitude},#{longitude}}"
-      @walk.coordinates_start = coordinates
+      walk.coordinates_start = coordinates
+      walk.save
     end
 end
