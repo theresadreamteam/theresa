@@ -16,35 +16,33 @@
 
   <body>
     <nav class="navbar navbar-light" style="background-color: rgba(0,0,0,0)">
-      <div class = "row">
-        <a class="navbar-brand" href="/">
-          <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
-        </a>
-        <div class="col-sm-1">
-          <a type="button" class="btn btn-default" id= "CreateWalk" href="/walks/new">Create Walk</a>
-        </div>
-        <div class="col-sm-1">
-          <a type="button" class="btn btn-default" id= "CreateTrip" href="/trips/new">Create Trip</a>
-        </div>
 
-        <% if  session[:user_id] == nil %>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Theresa</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">
+            <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="20" height="20" alt="">
+          </a></li>
+          <li><a href="/walks/new">Create walk</a></li>
+          <li><a href="/trips/new">Create trip</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <% if  session[:user_id] == nil %>
         <%= session[:user_id] %>
-          <div class="col-sm-1">
-            <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
-          </div>
-          <div class="col-sm-1">
-            <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
-          </div>
+          <li><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           
         <% else %>
-          <div class="col-sm-1">
-            <a type="button" class="btn btn-default" id= "MyTrip" href="/mytrips">My Trips</a>
-          </div>
-          <div class="col-sm-1">
-            <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
-          </div>
+          <li><a href="/mytrips"><span class="glyphicon glyphicon-star"></span> My Trips</a></li>
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
         <% end %>
+        </ul>
       </div>
+
     </nav>
     <%= yield %>
   </body>
