@@ -1,3 +1,4 @@
+<body class="newWalk">
 <%= form_for @walk, url: {action: "update"}, html: {class: 
 "nifty_form"} do |f| %>
   <%= f.label :photo, 'Photo: ' %>
@@ -18,3 +19,4 @@
   </p>
   <%= f.submit "Save" %>
 <% end %>
+</body>

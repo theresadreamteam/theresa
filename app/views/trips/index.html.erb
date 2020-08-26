@@ -1,5 +1,7 @@
-<%@trips.each do |trip|%>
+<body class="newWalk">
+ <%@trips.each do |trip|%>
   <div class ="col-sm-4" class = "tripbox">
     <a href="/trips/<%= trip.id %>"><%=trip.name%></a>
   </div>
 <% end %>
+</body>
