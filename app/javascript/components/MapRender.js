@@ -225,6 +225,8 @@ class MapRender extends React.Component {
               />
               <Button onClick={() => this.setLocation()}>Reset Location</Button>
             </ButtonGroup>
+            <a href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))}>More accurate travel by Public Transport</a>
+            <a href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))+'&0_mode=driving'}>More accurate travel by Car</a>
           </Row>
           <br></br>
           <Row>
