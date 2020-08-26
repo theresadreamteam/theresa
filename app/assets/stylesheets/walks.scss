@@ -40,6 +40,10 @@ html, body {
   background-size: cover;
 }
 
+.mapHolder {
+  height: 697px;
+}
+
 @media only screen and (max-device-width: 1366px) {
   .parallax {
     background-attachment: scroll;
