@@ -8,6 +8,7 @@
   </span></a>
   
 </div>
+
 <%# background image %>
 <div class="parallax">
 
@@ -47,24 +48,25 @@
   </div>
 </div>
 
-
 <div class="container">
-  
-      <%@walks.each do |walk|%>
-        <div class ="col-sm-4">
-          <% if walk.photo.attached? %>
-          <img src="<%=(url_for(walk.photo))%>" width=100%>
-          <% end %>
+  <div class="row">
+    <%@walks.each do |walk|%>
+      <div class ="col-sm-4">
+        <% if walk.photo.attached? %>
+          <img src="<%=(url_for(walk.photo))%>" width="100%">
+        <% end %>
 
-          <h5><%=walk.title%></h5>
-          <p><%=walk.description%></p>
-          <span class='parent-likes'>
+        <h5><%=walk.title%></h5>
+        <div class="walk-desc"><%=walk.description%></div>
+            
+        <span class='parent-likes'>
           <span class="like_count" <%=walk.id%>'>
-          <%= walk.get_likes.size %> &#127752
+            <%= walk.get_likes.size %> &#127752
+          </span>
         </span>
-          <a type="button" class="btn btn-info btn-block" href="/walks/<%= walk.id %>" >More Info</a>
-        </div>
-      <%end%>
-    </div>
+            
+        <a type="button" class="btn btn-info btn-block" href="/walks/<%= walk.id %>" >More Info</a>
+      </div>
+    <%end%>
   </div>
 </div>
