@@ -36,20 +36,11 @@ class WalksController < ApplicationController
 
   def create
     @walk = Walk.new(walk_params.merge(user_id: current_user.id))
-    url = URI("https://api.postcodes.io/random/postcodes")
+    
+    if @walk.coordinates_start == nil
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(url)
-
-    response = http.request(request)
-    response_text = response.read_body.split(",")
-    longitude = response_text[7].split(":")[1]
-    latitude = response_text[8].split(":")[1]
-    coordinates = "{#{latitude},#{longitude}}"
-    @walk.coordinates_start = coordinates
+      random_coordinates(@walk)
+    end
     @walk.save
     redirect_to @walk
   end
@@ -85,5 +76,22 @@ class WalksController < ApplicationController
   private
     def walk_params
       params.require(:walk).permit(:photo, :title, :description, :coordinates_start, :coordinates_end, :distance, :tag_list)
+    end
+
+    def random_coordinates
+      url = URI("https://api.postcodes.io/random/postcodes")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Get.new(url)
+
+      response = http.request(request)
+      response_text = response.read_body.split(",")
+      longitude = response_text[7].split(":")[1]
+      latitude = response_text[8].split(":")[1]
+      coordinates = "{#{latitude},#{longitude}}"
+      @walk.coordinates_start = coordinates
     end
 end
