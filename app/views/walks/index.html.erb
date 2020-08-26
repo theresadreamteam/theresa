@@ -53,24 +53,26 @@
 </div>
 
 <div class="parallax">
-  <div class="container">
+  <div class="containerWithPadding">
     <div class="row">
       <%@walks.each do |walk|%>
-        <div class ="col-sm-4">
+        <div class="col-sm-4">
+        <div class="backgroundWhite">
           <% if walk.photo.attached? %>
             <img src="<%=(url_for(walk.photo))%>" width="100%">
           <% end %>
 
           <h5><%=walk.title%></h5>
           <div class="walk-desc"><%=walk.description%></div>
-              
+                
           <span class='parent-likes'>
             <span class="like_count" <%=walk.id%>'>
               <%= walk.get_likes.size %> &#127752
             </span>
           </span>
-              
+                
           <a type="button" class="btn btn-info btn-block" href="/walks/<%= walk.id %>" >More Info</a>
+        </div>
         </div>
       <%end%>
     </div>
