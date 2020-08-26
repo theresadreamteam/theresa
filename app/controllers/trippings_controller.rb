@@ -7,9 +7,13 @@ class TrippingsController < ApplicationController
   end
 
   def create
-    p tripping_params
+    walk_id = tripping_params[:walk_id]
+    trip_id = tripping_params[:trip_id]
+    # trip_id.each do |trip_id|
+    # @tripping = Tripping.new(walk_id,trip_id)
     @tripping = Tripping.new(tripping_params)
     @tripping.save
+    # end
     redirect_to '/walks/1'
   end
 

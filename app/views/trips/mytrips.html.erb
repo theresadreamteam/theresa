@@ -1,6 +1,6 @@
-<%@trip.each do |trip|%>
+<%@trips.each do |trip|%>
   <div class ="row">
-    <a href="/trips/<%= trip.id %>"><%=trip.name%></a>
+    <h1 href="/trips/<%= trip.id %>"><%=trip.name%></h1>
       <div class ="col-sm-4">
       <% trip.trippings.each do |tripping| %>
           <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>

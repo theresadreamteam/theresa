@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
+  get "mytrips", to: 'trips#mytrips'
 
   resources :walks do
     resources :comments
