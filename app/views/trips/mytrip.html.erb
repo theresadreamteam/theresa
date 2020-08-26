@@ -1,7 +1,10 @@
-<h1> My Trips </h1>
-
-<%@trips.each do |trip|%>
-  <div class ="col-sm-4">
+<%@trip.each do |trip|%>
+  <div class ="row">
     <a href="/trips/<%= trip.id %>"><%=trip.name%></a>
+      <div class ="col-sm-4">
+      <% trip.trippings.each do |tripping| %>
+          <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+      <% end %>
+      </div>
   </div>
 <% end %>

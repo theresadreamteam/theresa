@@ -1,2 +1,8 @@
-<h1><%=@trip.name%></h1>
+<h1> <%= @trip.name %> </h1>
 
+<%@trip.trippings.each do |tripping|%>
+  <div class ="row">
+          <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+  </div>
+  </div>
+<% end %>

@@ -57,8 +57,8 @@
 <%= link_to 'Delete', walk_path(@walk),
               method: :delete,
               data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', walks_path %>
-
+<%= link_to 'Back', walks_path %> |
+<%= link_to 'Add to Trip', tripping_path(@walk) %>
 <p>
   <%= react_component 'WalkWeather' %>
 </p>

@@ -1,0 +1,13 @@
+<h1><%= @walk.title %></h1>
+
+<%= form_for @tripping, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= hidden_field_tag(:walk_id, @walk.id) %>
+  <% @trips.each do |trip| %>
+    <%= check_box_tag(:trip_id) %>
+    <%= label_tag(:trip_id, trip.name) %>
+    <br>
+  <% end %>
+<%= f.submit "add to trip" %>
+<% end %>
+
+<%= link_to 'Back', '/' %>

@@ -6,13 +6,14 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.create(trip_params.merge(user_id: current_user.id))
     p @trip
+    p @trip.trippings
     @trip.save
     redirect_to '/trips'
   end
 
   def index
     @trips = Trip.all
-    p @trips
+    p @trips[0].trippings
   end
 
   def mytrip
@@ -20,7 +21,7 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(params.permit(:id)[:id])
   end
 
   # def create
