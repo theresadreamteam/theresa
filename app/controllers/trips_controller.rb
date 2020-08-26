@@ -15,12 +15,12 @@ class TripsController < ApplicationController
     p @trips
   end
 
-  def mytrips
-    @trips = Trip.all
+  def mytrip
+    @trips = Trip.find(user_id: current_user.id)
   end
 
   def show
-    @tag = Tag.find(params[:id])
+    @trip = Trip.find(params[:id])
   end
 
   # def create
