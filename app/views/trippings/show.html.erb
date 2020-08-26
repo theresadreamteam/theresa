@@ -1,0 +1,7 @@
+<h1><%= @walk.title %></h1>
+
+<%= form_for @tripping, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.hidden_field :walk_id, :value => @walk.id %>
+  <%= f.select(:trip_id, options_from_collection_for_select(@trips.all, :id, :name)) %>
+<%= f.submit "add to trip" %>
+<% end %>

@@ -1,0 +1,12 @@
+<%@trips.each do |trip|%>
+  <div class ="row">
+    <h1><%=trip.name%></h1>
+    <a href="/trips/<%= trip.id %>">More Info</a>
+      <div class ="col-sm-4">
+      <% trip.trippings.each do |tripping| %>
+          <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+          <br>
+      <% end %>
+      </div>
+  </div>
+<% end %>

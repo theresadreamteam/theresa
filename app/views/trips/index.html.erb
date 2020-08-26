@@ -1,8 +1,5 @@
-All Trips:
-
-
 <%@trips.each do |trip|%>
-  <div class ="col-sm-4">
-    <h1><%=trip.name%></h1>
+  <div class ="col-sm-4" class = "tripbox">
+    <a href="/trips/<%= trip.id %>"><%=trip.name%></a>
   </div>
 <% end %>

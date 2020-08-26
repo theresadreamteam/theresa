@@ -6,18 +6,25 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#logout'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
+  get "mytrips", to: 'trips#mytrips'
 
   resources :walks do
     resources :comments
     member do
       put "like" => "walks#like"
+    resources :tags
     end
 
   resources :tags
   end
 
   resources :trips do
+    resources :trippings do
+      resources :walks
+    end
   end
+
+  resources :trippings
 
   root 'walks#index'
 

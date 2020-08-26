@@ -1,39 +1,39 @@
 class TripsController < ApplicationController
+
   def new
     @trip = Trip.new
   end
 
   def create
+    @trip = Trip.create(trip_params.merge(user_id: current_user.id))
+    @trip.save
+    redirect_to '/trips'
   end
 
   def index
     @trips = Trip.all
-    p @trips
+    p @trips[0].trippings
   end
 
   def mytrips
-    @trips = Trip.all
+    @trips = current_user.trips
+    @trips[0]
   end
 
   def show
-    @tag = Tag.find(params[:id])
+    @trip = Trip.find(params.permit(:id)[:id])
   end
-
-  # def create
-  #   @walk = Walk.find(params[:walk_id])
-  #   @tag = @walk.tags.create(tag_params.merge(walk_id: walk.id))
-  # end
 
   def destroy
-    @walk = Walk.find(params[:walk_id])
-    @tag = @walk.tags.find(params[:id])
-    @tag.destroy
-    redirect_to walk_path(@walk)
+    @trip = Trip.find(params[:id])
+    @trippings = @trip.trippings
+    @trippings.destroy
+    redirect_to '/'
   end
 
-  # private
-  # def comment_params
-  #   params.require(:tag).permit(:commenter, :body)
-  # end
+  private
+  def trip_params
+    params.require(:trip).permit(:name)
+  end
 
 end
