@@ -1,3 +1,5 @@
+<body class="newWalk">
+
 <%= form_for @walk, url: {action: "create"}, html: {class: 
 "nifty_form"} do |f| %>
   <% if @walk.errors.any? %>
@@ -34,3 +36,7 @@
 <% end %>
 
 <%= link_to 'Back', walks_path %>
+
+</body>
+
+

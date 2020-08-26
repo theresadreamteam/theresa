@@ -197,8 +197,6 @@ class MapRender extends React.Component {
       <React.Fragment>
         <Container>
           <Row>
-            <h1>Hello {this.props.name}, </h1>
-            <h3>Wow! This is a Map!</h3>
             <ButtonGroup aria-label="Set Radius">
               <Button onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button>
               <Button onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button>

@@ -7,47 +7,70 @@
   
 </div>
 
-<section class="hero-block-image container-fluid" height = 100% z-index=-1>
-  <img style="width:100%" src="https://instagram.flhr2-2.fna.fbcdn.net/v/t51.2885-15/e35/25023922_1582299001846151_5683933159448641536_n.jpg?_nc_ht=instagram.flhr2-2.fna.fbcdn.net&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F">
-  
-</section>
+<%# background image %>
+<div class="parallax">
 
+<%# nav bar at top of page %>
+    <nav class="navbar navbar-light" style="background-color: rgba(0,0,0,0)">
+      <div class = "row">
+        <a class="navbar-brand" href="/">
+          <img src="https://pbs.twimg.com/profile_images/1006882060798185473/hKitNgVG_400x400.jpg" width="30" height="30" alt="">
+        </a>
+        <% if  session[:user_id] == nil %>
+        <%= session[:user_id] %>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "login" href="/login">Log in</a>
+        </div>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "signup" href="<%= new_user_path %>">Sign up</a>
+        </div>
+        <% else %>
+        <div class="col-sm-1">
+        <a type="button" class="btn btn-default" id= "logout" href="/logout">Log out</a>
+        </div>
+        <% end %>
+      </div>
+  </nav>
+</div>
 
-<br>
-<br>
-<br>
-<br>
-
-
-
-<div class="container" id="all-maps">
-
+<div class="mapHolder">
   <div class="row">
-    <div class="col-sm-12">
+  <%# nav stuff not included in react component %>
+    <div class="col-sm-4">
       <p>Select Location</p>
-      <button type="button" class="btn btn-default">Default</button>
-      <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
-      <a type="button" class="btn btn-default" href="<%= new_trip_path %>">add trip</a>
-      <%= react_component 'MapRender', name: 'India', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
+        <button type="button" class="btn btn-default">Default</button>
+        <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
+        <a type="button" class="btn btn-default" href="<%= new_trip_path %>">add trip</a>
+    </div>
+    <%# all the map stuff - needs to be split into nav on the left and render on the right %>
+    <div class="col-sm-8">
+      <%= react_component 'MapRender', name: '', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9931.096460395553!2d-0.073328!3d51.51736!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1597762657115!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
   </div>
 </div>
-<div class="container">
-  
+
+<div class="parallax">
+  <div class="containerWithPadding">
+    <div class="row">
       <%@walks.each do |walk|%>
-        <div class ="col-sm-4">
+        <div class="col-sm-4">
+        <div class="backgroundWhite">
           <% if walk.photo.attached? %>
-          <img src="<%=(url_for(walk.photo))%>" width=100%>
+            <img src="<%=(url_for(walk.photo))%>" width="100%">
           <% end %>
 
           <h5><%=walk.title%></h5>
-          <p><%=walk.description%></p>
+          <div class="walk-desc"><%=walk.description%></div>
+                
           <span class='parent-likes'>
-          <span class="like_count" <%=walk.id%>'>
-          <%= walk.get_likes.size %> &#127752
-        </span>
+            <span class="like_count" <%=walk.id%>'>
+              <%= walk.get_likes.size %> &#127752
+            </span>
+          </span>
+                
           <a type="button" class="btn btn-info btn-block" href="/walks/<%= walk.id %>" >More Info</a>
+        </div>
         </div>
       <%end%>
     </div>

@@ -2,36 +2,66 @@
   <image src="<%=(url_for(@walk.photo))%>" width=100%>
 <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @walk.title %>
-</p>
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <span class="navbar-text" <%=@walk.id%>'>
+      <%= @walk.get_likes.size %> &#127752</span>
+      
+      <span class="navbar-text"><% if current_user.liked? @walk %>
+            <div> <%= link_to like_walk_path(@walk, 'unlike'), class: "liked-btn",
+            method: :put, remote: :true do %> unlike </div>
+                  <% end%>
+          <% else %>
+            <div> <%= link_to like_walk_path(@walk, 'like'), class: "like-btn",
+            method: :put, remote: :true do %> like </div>
+                  <% end%>
+          <% end%>
+          </span>
+    
+  
+  <div class="collapse navbar-collapse" id="navbarText">
+    
+    <span class="navbar-text">
+      <%= link_to 'Edit', edit_walk_path(@walk) %> |
+<%= link_to 'Delete', walk_path(@walk),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', walks_path %>
+      <%= link_to 'Add to Trip', tripping_path(@walk) %>
+    </span>
+  </div>
+</nav>
 
-<p>
-  <strong>Description:</strong>
-  <%= @walk.description %>
-</p>
+      
 
-<p>
-  <strong>Start place:</strong>
-  <%= @walk.coordinates_start %>
-</p>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1><%= @walk.title %></h1>
 
-<p>
-  <strong>End place:</strong>
-  <%= @walk.coordinates_end %>
-</p>
+    <p><%= @walk.description %></p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <p>
+          <strong>Start:</strong>
+          <%= @walk.coordinates_start %>
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <p>
+          <strong>End:</strong>
+          <%= @walk.coordinates_end %>
+        </p>
+      </div>
+    </div>
+  </div>
 
 <p>
   <strong>Length of walk:</strong>
   <%= @walk.distance %> km
 </p>
 <p> Posted by <%= @walk.user.username %> </p>
-
-<span class='parent-likes'>
-  <span class="like_count" <%=@walk.id%>'>
-  <%= @walk.get_likes.size %> &#127752
-</span>
 
 <p>
   Tags:
@@ -40,25 +70,6 @@
   <% end %>
 </p>
 
-<a>
-  <% if current_user.liked? @walk %>
-    <div> <%= link_to like_walk_path(@walk, 'unlike'), class: "liked-btn",
-    method: :put, remote: :true do %> Liked </div>
-  <% end%>
-  <% else %>
-    <div> <%= link_to like_walk_path(@walk, 'like'), class: "like-btn",
-    method: :put, remote: :true do %> Like </div>
-<% end%>
-<% end%>
-<a>
-</span>
-
-<%= link_to 'Edit', edit_walk_path(@walk) %> |
-<%= link_to 'Delete', walk_path(@walk),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', walks_path %> |
-<%= link_to 'Add to Trip', tripping_path(@walk) %>
 <p>
   <%= react_component 'WalkWeather' %>
 </p>
