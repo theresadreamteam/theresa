@@ -15,8 +15,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light" style="background-color: rgba(249,248,248,0.8)">
-      <div class="container-fluid">
+    <nav class="navbar sticky-top navbar-light bg-light">
+      <div class="container-fluid" id="navbar">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">Theresa</a>
         </div>
@@ -46,5 +46,25 @@
         <span class="text-muted">made with love by dreamdreamteamteam</span>
       </div>
     </footer>
+
+    <script>
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function() {myFunction()};
+
+      // Get the navbar
+      var navbar = document.getElementById("navbar");
+
+      // Get the offset position of the navbar
+      var sticky = navbar.offsetTop;
+
+      // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+      function myFunction() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      }
+    </script>
   </body>
 </html>
