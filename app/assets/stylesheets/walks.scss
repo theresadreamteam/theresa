@@ -42,6 +42,11 @@ html, body {
   background-size: cover;
 }
 
+
+#MapRow{
+  height: auto
+}
+
 .parallaxWalkShow {
   /* The image used */
   // background-image: url("https:t&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F");
@@ -57,7 +62,9 @@ html, body {
 }
 
 .mapHolder {
-  height: 697px;
+  height: 140%;
+  padding: 30px;
+  overflow: auto;
 }
 
 @media only screen and (max-device-width: 1366px) {

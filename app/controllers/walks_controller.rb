@@ -18,7 +18,7 @@ class WalksController < ApplicationController
     end
     @walkywalks =  []
     @walks.each do |walk|
-      @walkywalks << {latitude: walk.coordinates_start.split(',')[0].tr("{","").to_f, longitude: walk.coordinates_start.split(',')[-1].tr("}","").to_f}
+      @walkywalks << {latitude: walk.coordinates_start.split(',')[0].tr("{","").to_f, longitude: walk.coordinates_start.split(',')[-1].tr("}","").to_f, id: walk.id, title: walk.title, para: walk.description}
     end
   end
 
