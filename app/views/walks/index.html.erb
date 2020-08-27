@@ -39,8 +39,10 @@
             <img src="<%=(url_for(walk.photo))%>" width="100%">
           <% end %>
 
-          <h5><%=walk.title%></h5>
-          <div class="walk-desc"><%=walk.description%></div>
+          <div class="walk-desc">
+            <h5><%=walk.title%></h5>
+            <%=walk.description%>
+          </div>
                 
           <span class='parent-likes'>
             <span class="like_count" <%=walk.id%>'>
