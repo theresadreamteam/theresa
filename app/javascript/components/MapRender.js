@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 require('dotenv').config();
-import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, Circle, Popup } from 'google-maps-react';
 import { ButtonGroup, Container, Row, Col} from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 
@@ -12,10 +12,19 @@ class MapRender extends React.Component {
     
     this.state = {
       walks: this.props.walks,
+      openInfoWindowMarkerId: {
+        id: "",
+        title: "" ,
+        para: ""
+      },
       mapState : {
         latitude: this.props.latitude,
         longitude: this.props.longitude,
         zoom: 8,
+        popup: {
+          latitude: this.props.latitude,
+          longitude: this.props.longitude
+        },
         circle: {
           radius: 50000,
           strokeColor: "#FF0000",
@@ -66,7 +75,7 @@ class MapRender extends React.Component {
     this.setState({tempState});
   }
 
-  resetmap = (latitude,longitude) => {
+  resetMap = (latitude,longitude) => {
     let tempState = this.state
     tempState.mapState.longitude = longitude;
     tempState.mapState.latitude = latitude;
@@ -96,6 +105,14 @@ class MapRender extends React.Component {
     return distance; // in meters
   }
 
+  setPlaceFocus = (markerId,markerTitle,markerPara) => {
+    let tempState = this.state;
+    tempState.openInfoWindowMarkerId.id = markerId
+    tempState.openInfoWindowMarkerId.title = markerTitle
+    tempState.openInfoWindowMarkerId.para = markerPara
+    this.setState(tempState);
+  }
+
   displayMarkers = () => {
     var latLngB = { 
       latitude: this.state.mapState.latitude,
@@ -108,12 +125,20 @@ class MapRender extends React.Component {
         longitude: walk.longitude
       }
       if (this.calculateDistance(latLngA, latLngB) < this.state.mapState.circle.radius) {
-      return <Marker key={index} id={index} position={{
+      return <Marker key={index} id={walk.id} position={{
        lat: walk.latitude,
        lng: walk.longitude
      }}
+     label = {walk.title}
+
      
-     onClick={() => this.displayPlace(walk)} />
+     onClick={() => {
+       this.displayPlace(walk);
+       this.setPlaceFocus(walk.id, walk.title, walk.para)
+      }
+    } />
+    
+     
       }
     })
   }
@@ -182,7 +207,8 @@ class MapRender extends React.Component {
               if (response.split(",")[8].split(":")[1] > 0) {
                 console.log("Latitude: "+response.split(",")[8].split(":")[1])
                 console.log("Longitude:"+response.split(",")[7].split(":")[1])
-                this.resetmap(response.split(",")[8].split(":")[1],response.split(",")[7].split(":")[1])
+                console.log(this)
+                this.resetMap(response.split(",")[8].split(":")[1],response.split(",")[7].split(":")[1])
               }
           })
       }
@@ -195,17 +221,22 @@ class MapRender extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
-          <div class = 'row'>
-            <div class='col-sm-4'>
-          
+      <Container>
+        <Row>
+            <h1> {this.state.openInfoWindowMarkerId.title}</h1>
+            <p> {this.state.openInfoWindowMarkerId.para}</p>
+            <Button href={'/walks/'+this.state.openInfoWindowMarkerId.id}> More Info</Button>
+        </Row>
+        <br></br>
+        <br></br>
+        <Row>
+          <Col>
             <ButtonGroup aria-label="Set Radius">
-              <Button class="btn btn-default" onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button>
-              <Button class="btn btn-default" onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button>
-              <Button class="btn btn-default" onClick={() => this.zoomin()}>Zoom In</Button>
-              <Button class="btn btn-default" onClick={() => this.zoomout()}>Zoom Out</Button>
-            </ButtonGroup>
-            <br></br>
+              <Button  onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button><></>
+              <Button  onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button><></>
+              <Button  onClick={() => this.zoomin()}>Zoom In</Button><></>
+              <Button  onClick={() => this.zoomout()}>Zoom Out</Button><></>
+            
             <label>Time in Car </label>
               <input
                 type="text"
@@ -213,7 +244,8 @@ class MapRender extends React.Component {
                 value={this.state.mapState.circle.radius/100000+" hrs"}
                 disabled={true}
               />
-              <br></br>
+              </ButtonGroup>
+              <></>
               <ButtonGroup aria-label="Reset Location">
               
               <input
@@ -223,45 +255,39 @@ class MapRender extends React.Component {
                 onChange={this.getcoordinate.bind(this)}
                 disabled={false}
               />
-              <Button class="btn btn-default" onClick={() => this.setLocation()}>Reset Location</Button>
+              <Button onClick={() => this.setLocation()}>Reset Location</Button><></>
             </ButtonGroup>
+            <ButtonGroup>
             <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))}>More accurate travel by Public Transport</Button>
             <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))+'&0_mode=driving'}>More accurate travel by Car</Button>
-          
-          </div>
+            </ButtonGroup>
+          </Col>
+          </Row>
           <br></br>
-          <div class="col-sm-8">
-          <Map
-            google={this.props.google}
-            zoom={this.state.mapState.zoom}
-            class = "mapStyles"
-            initialCenter={{ lat: 51.51736, lng: -0.073328}}
-            >
+          <Row id="MapRow">
+            <Map
+              google={this.props.google}
+              zoom={this.state.mapState.zoom}
+              class = "mapStyles"
+              initialCenter={{ lat: 51.51736, lng: -0.073328}}
+              >
 
-            {this.displayMarkers()}
-            <Circle
-                  center={{
-                    lat: this.state.mapState.latitude,
-                    lng: this.state.mapState.longitude
-                  }}
-                  radius={this.state.mapState.circle.radius}
-                  strokeColor={this.state.mapState.circle.strokeColor}
-                  strokeOpacity={this.state.mapState.circle.strokeOpacity}
-                  strokeWeight={this.state.mapState.circle.strokeWeight}
-                  fillColor={this.state.mapState.circle.fillColor}
-                  fillOpacity={this.state.mapState.circle.fillOpacity}
-                />  
-          </Map>
-          </div>
-          </div>
-        
-
-          <h1> Walks through React Fragment</h1>
-        <Row>
-            {this.displayWalks()}
-        </Row>
-
-      </React.Fragment>
+              {this.displayMarkers()}
+              <Circle
+                    center={{
+                      lat: this.state.mapState.latitude,
+                      lng: this.state.mapState.longitude
+                    }}
+                    radius={this.state.mapState.circle.radius}
+                    strokeColor={this.state.mapState.circle.strokeColor}
+                    strokeOpacity={this.state.mapState.circle.strokeOpacity}
+                    strokeWeight={this.state.mapState.circle.strokeWeight}
+                    fillColor={this.state.mapState.circle.fillColor}
+                    fillOpacity={this.state.mapState.circle.fillOpacity}
+                  />  
+            </Map>
+        </Row>           
+        </Container>
     );
   }
 }

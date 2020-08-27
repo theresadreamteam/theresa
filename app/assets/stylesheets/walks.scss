@@ -40,8 +40,14 @@ html, body {
   background-size: cover;
 }
 
+#MapRow{
+  height: auto
+}
+
 .mapHolder {
-  height: 697px;
+  height: 140%;
+  padding: 30px;
+  overflow: auto;
 }
 
 @media only screen and (max-device-width: 1366px) {

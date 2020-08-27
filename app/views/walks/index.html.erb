@@ -4,6 +4,10 @@
   <a href="#all-maps" class="link scrollTo">
     <button type="button" class="btn btn-default">See Walks</button>
   </span></a>
+  <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
+  <a type="button" class="btn btn-default" href="<%= new_trip_path %>">add trip</a>
+
+
   
 </div>
 
@@ -34,19 +38,12 @@
 </div>
 
 <div class="mapHolder">
-  <%# nav stuff not included in react component %>
 
-      <p>Select Location</p>
-        <button type="button" class="btn btn-default">Default</button>
-        <a type="button" class="btn btn-default" href="<%= new_walk_path %>">add walk</a>
-        <a type="button" class="btn btn-default" href="<%= new_trip_path %>">add trip</a>
-
-    <%# all the map stuff - needs to be split into nav on the left and render on the right %>
-
-      <%= react_component 'MapRender', name: '', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9931.096460395553!2d-0.073328!3d51.51736!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1597762657115!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      <%= react_component 'MapRender', latitude: @latitude, longitude: @longitude, walks: @walkywalks %>
 
 </div>
+
+<br></br>
 
 <div class="parallax">
   <div class="containerWithPadding">
