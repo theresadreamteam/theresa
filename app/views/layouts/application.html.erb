@@ -8,6 +8,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
@@ -15,13 +17,13 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light" style="background-color: rgba(249,248,248,0.8)">
-      <div class="container-fluid">
+    <nav class="navbar sticky-top navbar-light bg-light">
+      <div class="container-fluid" id="navbar">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Theresa</a>
+          <a class="navbar-brand" href="/" style="font-family: 'Amatic SC', cursive">Theresa</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">
+          <li class="active"><a href="/">
             <img src="https://i.imgur.com/irwwIuI.png" width="20" height="20" alt="">
           </a></li>
           <li><a href="/walks/new">Create walk</a></li>
@@ -46,5 +48,26 @@
         <span class="text-muted">made with love by dreamdreamteamteam</span>
       </div>
     </footer>
+
+    <script>
+    // this is the script to make the navbar sticky
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function() {myFunction()};
+
+      // Get the navbar
+      var navbar = document.getElementById("navbar");
+
+      // Get the offset position of the navbar
+      var sticky = navbar.offsetTop;
+
+      // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+      function myFunction() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      }
+    </script>
   </body>
 </html>
