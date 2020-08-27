@@ -76,9 +76,10 @@ class MapRender extends React.Component {
   }
 
   resetMap = (latitude,longitude) => {
+    console.log("resetting the map")
     let tempState = this.state
-    tempState.mapState.longitude = longitude;
-    tempState.mapState.latitude = latitude;
+    tempState.mapState.longitude = parseFloat(longitude);
+    tempState.mapState.latitude = parseFloat(latitude);
     this.setState({tempState});
     }
 
@@ -151,7 +152,6 @@ class MapRender extends React.Component {
   }
 
   displayWalks() {
-    console.log("I'm doing this!")
     var latLngB = { 
       latitude: this.state.mapState.latitude,
       longitude: this.state.mapState.longitude
@@ -201,15 +201,19 @@ class MapRender extends React.Component {
           }
         })
 
+        var coordinates
+        
         new HttpClient().get(website, function(response) {
               console.log(response)
               if (response.split(",")[8].split(":")[1] > 0) {
                 console.log("Latitude: "+response.split(",")[8].split(":")[1])
                 console.log("Longitude:"+response.split(",")[7].split(":")[1])
-                console.log(this)
-                this.resetMap(response.split(",")[8].split(":")[1],response.split(",")[7].split(":")[1])
+                coordinates = [response.split(",")[8].split(":")[1],response.split(",")[7].split(":")[1]]
               }
           })
+
+          setTimeout(() => {  this.resetMap(coordinates[0],coordinates[1]); }, 2000);
+
       }
         
         
