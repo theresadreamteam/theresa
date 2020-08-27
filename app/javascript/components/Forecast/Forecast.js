@@ -46,7 +46,6 @@ const Forecast = () => {
 
   return (
     <div>
-      <h2>find current weather conditions</h2>
       <form onSubmit={getForecast}>
         <input
           type="number"
@@ -85,6 +84,7 @@ const Forecast = () => {
               Fahrenheit
           </label>
           <button className={classes.Button} type="submit">get forecast</button>
+          <br></br>
       </form>
       <Conditions 
           responseObj={responseObj}

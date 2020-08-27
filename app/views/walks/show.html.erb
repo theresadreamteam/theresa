@@ -52,6 +52,10 @@ style="background-image: url('<%=(url_for(@walk.photo))%>')" >
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
+      <br>
+      <br>
+      <p>more details</p>
+      <br>
         <p>
           <strong>Start:</strong>
           <%= @walk.coordinates_start %>
@@ -71,6 +75,7 @@ style="background-image: url('<%=(url_for(@walk.photo))%>')" >
       <div class="col-sm-6">
         <p>&#127783; &#127752; &#127774; &#127785;</p>
         <p>
+          find the current weather conditions
           <%= react_component 'WalkWeather' %>
         </p>
       </div>
