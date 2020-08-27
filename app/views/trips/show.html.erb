@@ -1,12 +1,33 @@
-<h1> <%= @trip.name %> </h1>
+<body class="newWalk">
 
-<%@trip.trippings.each do |tripping|%>
-  <div class ="row">
-          <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
-  </div>
-  </div>
-<% end %>
+<div class="row">
+    <div class="col-sm-3">
+    </div>
 
-<%= link_to 'Delete', trip_path(@trip),
+    <div class="col-sm-6">
+      <section class="jumbotron text-center">
+          <div class="container">
+            <h1 style="font-family: 'Amatic SC', cursive"><%= @trip.name %></h1>
+            <br>
+          </div>
+
+        <div>
+          <%@trip.trippings.each do |tripping|%>
+            <div class ="row">
+              <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+            </div>
+          <% end %>
+        </div>
+        <br><br><br>
+        <%= link_to 'Delete', trip_path(@trip),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %> |
+              data: { confirm: 'Are you sure?' } %> 
+      </section>
+
+    <div class="col-sm-3">
+    </div>
+
+</body>
+
+
+

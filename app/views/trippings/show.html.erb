@@ -1,7 +1,27 @@
-<h1><%= @walk.title %></h1>
+<body class="newWalk">
 
-<%= form_for @tripping, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.hidden_field :walk_id, :value => @walk.id %>
-  <%= f.select(:trip_id, options_from_collection_for_select(@trips.all, :id, :name)) %>
-<%= f.submit "add to trip" %>
-<% end %>
+<div class="row">
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6">
+      <section class="jumbotron text-center">
+          <div class="container">
+            <h1 style="font-family: 'Amatic SC', cursive"><%= @walk.title %></h1>
+            <br>
+          </div>
+
+        <div>
+          <%= form_for @tripping, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+            <%= f.hidden_field :walk_id, :value => @walk.id %>
+            <%= f.select(:trip_id, options_from_collection_for_select(@trips.all, :id, :name)) %>
+            <%= f.submit "add to trip" %>
+          <% end %>
+        </div>
+      
+      </section>
+
+    <div class="col-sm-3">
+    </div>
+
+</body>

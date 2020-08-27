@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 require('dotenv').config();
-import { Map, GoogleApiWrapper, Marker, Circle, Popup } from 'google-maps-react';
-import { ButtonGroup, ButtonToolbar, Container, FormControl, InputGroup, Row, Col} from 'reactstrap';
+import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { ButtonGroup, ButtonToolbar, Container, InputGroup, Row, Col} from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 
 class MapRender extends React.Component {
@@ -215,20 +215,16 @@ class MapRender extends React.Component {
           setTimeout(() => {  this.resetMap(coordinates[0],coordinates[1]); }, 2000);
 
       }
-        
-        
-    
-      
       
     }
 
   render () {
     return (
-      <Container>
+      <Container fluid={true}>
         <Row>
             <h1> {this.state.openInfoWindowMarkerId.title}</h1>
             <p> {this.state.openInfoWindowMarkerId.para}</p>
-            <Button href={'/walks/'+this.state.openInfoWindowMarkerId.id}> More Info</Button>
+            <Button variant="secondary" href={'/walks/'+this.state.openInfoWindowMarkerId.id}> More Info</Button>
         </Row>
         <br></br>
         <br></br>
@@ -263,25 +259,33 @@ class MapRender extends React.Component {
               />
               
               </InputGroup>
+
+              <InputGroup className="mr-2" aria-label="Reset Location">
+
+                <input
+                  type="text"
+                  name="new coordinates"
+                  value={this.state.postcode}
+                  onChange={this.getcoordinate.bind(this)}
+                  disabled={false}
+                />
+                <Button variant="secondary" onClick={() => this.setLocation()}>Reset Location</Button><></>
+
+              </InputGroup>
             </ButtonToolbar>
 
-              <ButtonGroup aria-label="Reset Location">
-              
-              <input
-                type="text"
-                name="new coordinates"
-                value={this.state.postcode}
-                onChange={this.getcoordinate.bind(this)}
-                disabled={false}
-              />
-              <Button onClick={() => this.setLocation()}>Reset Location</Button><></>
-            </ButtonGroup>
-            <ButtonGroup>
-            <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))}>More accurate travel by Public Transport</Button>
-            <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))+'&0_mode=driving'}>More accurate travel by Car</Button>
-            </ButtonGroup>
+            <ButtonToolbar className="mb-3" aria-label="Toolbar with more accurate buttons">
+              <ButtonGroup className="mr-2" aria-label="more accurate by car">
+                <Button variant="secondary" href={'https://app.traveltime.com/search/0_lat=' + this.state.mapState.latitude + '&0_lng=' + this.state.mapState.longitude + '&0_tt=' + (Math.round((this.state.mapState.circle.radius) * 60 / 100000)) + '&0_mode=driving'}>More accurate travel by Car</Button>{' '}
+              </ButtonGroup>
+
+              <ButtonGroup className="mr-2" aria-label="more accurate public transport">
+                <Button variant="secondary" href={'https://app.traveltime.com/search/0_lat=' + this.state.mapState.latitude + '&0_lng=' + this.state.mapState.longitude + '&0_tt=' + (Math.round((this.state.mapState.circle.radius) * 60 / 100000))}>More accurate travel by Public Transport</Button>{' '}
+              </ButtonGroup>
+            </ButtonToolbar>
+          
           </Col>
-          </Row>
+        </Row>
           <br></br>
           <Row id="MapRow">
             <Map
@@ -306,7 +310,7 @@ class MapRender extends React.Component {
                   />  
             </Map>
         </Row>           
-        </Container>
+      </Container>
     );
   }
 }
