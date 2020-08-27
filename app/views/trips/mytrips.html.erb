@@ -1,14 +1,32 @@
 <body class="newWalk">
-<%@trips.each do |trip|%>
-  <div class ="row">
-    <h1><%=trip.name%></h1>
-    <a href="/trips/<%= trip.id %>">More Info</a>
-      <div class ="col-sm-4">
-      <% trip.trippings.each do |tripping| %>
-          <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
-          <br>
-      <% end %>
-      </div>
-  </div>
-<% end %>
+
+<div class="row">
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6">
+      <section class="jumbotron text-center">
+          <div class="container">
+            <h1 style="font-family: 'Amatic SC', cursive">My Trips</h1>
+            <br>
+          </div>
+
+        <div class=>
+          <%@trips.each do |trip|%>
+            <div class ="row">
+              <h3><%=trip.name%></h3>
+              <a href="/trips/<%= trip.id %>">More Info</a><br><br>
+                <% trip.trippings.each do |tripping| %>
+                    <a href="/walks/<%= tripping.walk_id %>"><%=tripping.walk.title%></a>
+                    <br>
+                <% end %>
+            </div>
+          <% end %>
+        </div>
+      
+      </section>
+
+    <div class="col-sm-3">
+    </div>
+
 </body>
