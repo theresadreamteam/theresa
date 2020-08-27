@@ -1,6 +1,7 @@
-<% if @walk.photo.attached? %>
-  <image src="<%=(url_for(@walk.photo))%>" width=100%>
-<% end %>
+<div class="parallaxWalkShow" 
+style="background-image: url('<%=(url_for(@walk.photo))%>')" >
+</div>
+
 
 <nav class="navbar navbar-expand navbar-light bg-light">
   <span class="navbar-text" <%=@walk.id%>'>
