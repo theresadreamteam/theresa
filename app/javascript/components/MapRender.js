@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 require('dotenv').config();
-import { Map, GoogleApiWrapper, Marker, Circle, Popup } from 'google-maps-react';
-import { ButtonGroup, ButtonToolbar, Container, FormControl, InputGroup, Row, Col} from 'reactstrap';
+import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { ButtonGroup, ButtonToolbar, Container, InputGroup, Row, Col} from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 
 class MapRender extends React.Component {
@@ -212,16 +212,12 @@ class MapRender extends React.Component {
               }
           })
       }
-        
-        
-    
-      
       
     }
 
   render () {
     return (
-      <Container>
+      <Container fluid={true}>
         <Row>
             <h1> {this.state.openInfoWindowMarkerId.title}</h1>
             <p> {this.state.openInfoWindowMarkerId.para}</p>
