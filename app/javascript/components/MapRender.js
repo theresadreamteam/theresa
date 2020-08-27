@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 require('dotenv').config();
 import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
-import { Button, ButtonGroup, Container, Row, Col} from 'reactstrap';
+import { ButtonGroup, Container, Row, Col} from 'reactstrap';
+import Button from 'react-bootstrap/Button';
 
 class MapRender extends React.Component {
 
@@ -126,7 +127,7 @@ class MapRender extends React.Component {
   }
 
   displayWalks() {
-    
+    console.log("I'm doing this!")
     var latLngB = { 
       latitude: this.state.mapState.latitude,
       longitude: this.state.mapState.longitude
@@ -140,9 +141,9 @@ class MapRender extends React.Component {
       if (this.calculateDistance(latLngA, latLngB) < this.state.mapState.circle.radius) {
       console.log("Show walk"+index)
       return (
-        <div id={"walk"+index}>
-        <p> {walk.title}</p>
-        </div>
+        <Row id={"walk"+index} class="col-sm-4">
+          <p> {walk.title}</p>
+        </Row>
         );
       }
     })
@@ -195,13 +196,14 @@ class MapRender extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <Container>
-          <Row>
+          <div class = 'row'>
+            <div class='col-sm-4'>
+          
             <ButtonGroup aria-label="Set Radius">
-              <Button onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button>
-              <Button onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button>
-              <Button onClick={() => this.zoomin()}>Zoom In</Button>
-              <Button onClick={() => this.zoomout()}>Zoom Out</Button>
+              <Button class="btn btn-default" onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button>
+              <Button class="btn btn-default" onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button>
+              <Button class="btn btn-default" onClick={() => this.zoomin()}>Zoom In</Button>
+              <Button class="btn btn-default" onClick={() => this.zoomout()}>Zoom Out</Button>
             </ButtonGroup>
             <br></br>
             <label>Time in Car </label>
@@ -221,13 +223,14 @@ class MapRender extends React.Component {
                 onChange={this.getcoordinate.bind(this)}
                 disabled={false}
               />
-              <Button onClick={() => this.setLocation()}>Reset Location</Button>
+              <Button class="btn btn-default" onClick={() => this.setLocation()}>Reset Location</Button>
             </ButtonGroup>
-            <a href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))}>More accurate travel by Public Transport</a>
-            <a href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))+'&0_mode=driving'}>More accurate travel by Car</a>
-          </Row>
+            <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))}>More accurate travel by Public Transport</Button>
+            <Button href={'https://app.traveltime.com/search/0_lat='+this.state.mapState.latitude+'&0_lng='+this.state.mapState.longitude+'&0_tt='+(Math.round((this.state.mapState.circle.radius)*60/100000))+'&0_mode=driving'}>More accurate travel by Car</Button>
+          
+          </div>
           <br></br>
-          <Row>
+          <div class="col-sm-8">
           <Map
             google={this.props.google}
             zoom={this.state.mapState.zoom}
@@ -249,11 +252,15 @@ class MapRender extends React.Component {
                   fillOpacity={this.state.mapState.circle.fillOpacity}
                 />  
           </Map>
-          </Row>
-          <Row>
+          </div>
+          </div>
+        
+
+          <h1> Walks through React Fragment</h1>
+        <Row>
             {this.displayWalks()}
-          </Row>
-        </Container>
+        </Row>
+
       </React.Fragment>
     );
   }
