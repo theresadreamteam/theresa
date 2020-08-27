@@ -82,19 +82,14 @@ style="background-image: url('<%=(url_for(@walk.photo))%>')" >
 
     </div>
   </div>
-      
-      <br>
       <p> Posted by <%= @walk.user.username %> </p>
-
         <p>
           Tags:
           <% @walk.tags.each do |tag| %>
             <%= link_to tag.name, walk_tag_path(tag) %>
           <% end %>
         </p>
-
-        
-                    
+    <div> 
         <h2>Comments</h2>
         <% @walk.comments.each do |comment| %>
           <p>
@@ -122,8 +117,11 @@ style="background-image: url('<%=(url_for(@walk.photo))%>')" >
         <button type="form.submit">add comment</button>
         </p>
       <% end %>
+    </div>
 
-
+    <div>
+      <br><br><br><br><br><br>
+    </div>
 
 
 </section>
