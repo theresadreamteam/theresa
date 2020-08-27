@@ -129,7 +129,6 @@ class MapRender extends React.Component {
        lat: walk.latitude,
        lng: walk.longitude
      }}
-     label = {walk.title}
 
      
      onClick={() => {
