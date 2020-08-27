@@ -17,21 +17,19 @@
   <% end %>
 
   <%= f.label :photo, 'Photo: ' %>
-  <%= f.file_field :photo %>
-  <%= f.label :title, 'Title: ' %>
+  <%= f.file_field :photo %><br>
+  <%= f.label :title, 'Title: ' %><br>
   <%= f.text_field :title %><br><br>
-  <%= f.label :description, 'Description: '%>
+  <%= f.label :description, 'Description: '%><br>
   <%= f.text_area :description, size: "40x5" %><br><br>
-  <%= f.label :coordinates_start, 'Start of walk (coordinates): ' %>
+  <%= f.label :coordinates_start, 'Start of walk (coordinates): ' %><br>
   <%= f.text_field :coordinates_start %><br><br>
-  <%= f.label :coordinates_end, 'End of walk (coordinates): ' %>
+  <%= f.label :coordinates_end, 'End of walk (coordinates): ' %><br>
   <%= f.text_field :coordinates_end %><br><br>
-  <%= f.label :distance, 'Length of walk (in km): ' %>
+  <%= f.label :distance, 'Length of walk (in km): ' %><br>
   <%= f.text_field :distance %><br><br>
-  <p>
-  <%= f.label :tag_list %><br />
-  <%= f.text_field :tag_list %>
-  </p>
+  <%= f.label :tag_list %><br>
+  <%= f.text_field :tag_list %><br><br>
   <%= f.submit "add this walk" %>
 <% end %>
 
