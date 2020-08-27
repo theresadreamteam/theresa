@@ -225,7 +225,7 @@ class MapRender extends React.Component {
         <Row>
             <h1> {this.state.openInfoWindowMarkerId.title}</h1>
             <p> {this.state.openInfoWindowMarkerId.para}</p>
-            <Button href={'/walks/'+this.state.openInfoWindowMarkerId.id}> More Info</Button>
+            <Button variant="secondary" href={'/walks/'+this.state.openInfoWindowMarkerId.id}> More Info</Button>
         </Row>
         <br></br>
         <br></br>
@@ -286,7 +286,7 @@ class MapRender extends React.Component {
             </ButtonToolbar>
           
           </Col>
-          </Row>
+        </Row>
           <br></br>
           <Row id="MapRow">
             <Map
@@ -311,7 +311,7 @@ class MapRender extends React.Component {
                   />  
             </Map>
         </Row>           
-        </Container>
+      </Container>
     );
   }
 }
