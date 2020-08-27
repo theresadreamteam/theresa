@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 require('dotenv').config();
 import { Map, GoogleApiWrapper, Marker, Circle, Popup } from 'google-maps-react';
-import { ButtonGroup, Container, Row, Col} from 'reactstrap';
+import { ButtonGroup, ButtonToolbar, Container, FormControl, InputGroup, Row, Col} from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 
 class MapRender extends React.Component {
@@ -231,21 +231,37 @@ class MapRender extends React.Component {
         <br></br>
         <Row>
           <Col>
-            <ButtonGroup aria-label="Set Radius">
-              <Button  onClick={() => this.incrementRadius()}>Increase Drive Time: 15 mins</Button><></>
-              <Button  onClick={() => this.decreaseRadius()}>Decrease Drive Time: 15 mins</Button><></>
-              <Button  onClick={() => this.zoomin()}>Zoom In</Button><></>
-              <Button  onClick={() => this.zoomout()}>Zoom Out</Button><></>
-            
-            <label>Time in Car </label>
+
+            <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
+              <ButtonGroup className="mr-2" aria-label="First group">
+                <Button variant="secondary" onClick={() => this.incrementRadius()} >Increase Drive Time: 15 mins</Button>{' '}
+              </ButtonGroup>
+
+              <ButtonGroup className="mr-2" aria-label="Second group">
+                <Button variant="secondary" onClick={() => this.decreaseRadius()} >Decrease Drive Time: 15 mins</Button>{' '}
+              </ButtonGroup>
+
+              <ButtonGroup className="mr-2" aria-label="Third group">
+                <Button variant="secondary" onClick={() => this.zoomin()}>Zoom In</Button>{' '}
+              </ButtonGroup>
+
+              <ButtonGroup className="mr-2" aria-label="Fourth group">
+                <Button variant="secondary" onClick={() => this.zoomout()}>Zoom Out</Button>{' '}
+              </ButtonGroup>
+
+              <InputGroup>
+
+              <label>Time in Car </label>
               <input
                 type="text"
                 name="radius"
                 value={this.state.mapState.circle.radius/100000+" hrs"}
                 disabled={true}
               />
-              </ButtonGroup>
-              <></>
+              
+              </InputGroup>
+            </ButtonToolbar>
+
               <ButtonGroup aria-label="Reset Location">
               
               <input
