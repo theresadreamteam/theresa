@@ -15,15 +15,17 @@ html, body {
   margin-left: 5%;
   position: absolute;
   color: aliceblue;
-  background-color: none
+  background-color: none;
 }
 
 #headerBlockTitle {
   font-size: 76px;
+  font-family: 'Amatic SC', cursive;
 }
 
 #headerBlockSubTitle {
   font-size: 36px;
+  font-family: 'Amatic SC', cursive;
 }
 
 .parallax {
@@ -40,8 +42,23 @@ html, body {
   background-size: cover;
 }
 
+
 #MapRow{
   height: auto
+}
+
+.parallaxWalkShow {
+  /* The image used */
+  // background-image: url("https:t&_nc_cat=111&_nc_ohc=Efr8yu6qpwEAX8nsk4s&oh=8a44da139d5cee680ef6393a4c88f7ea&oe=5F69C29F");
+
+  /* Set a specific height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .mapHolder {
@@ -57,9 +74,10 @@ html, body {
 }
 
 div.walk-desc {
-  // background-color: lightblue;
-  height: 60px;
+  height: 80px;
   overflow: hidden;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 div.containerWithPadding {
