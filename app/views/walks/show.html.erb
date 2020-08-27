@@ -51,64 +51,74 @@ style="background-image: url('<%=(url_for(@walk.photo))%>')" >
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <p>
           <strong>Start:</strong>
           <%= @walk.coordinates_start %>
         </p>
-      </div>
-      <div class="col-sm-4">
+      
         <p>
           <strong>End:</strong>
           <%= @walk.coordinates_end %>
         </p>
-      </div>
-      <div class="col-sm-4">
+
         <p>
           <strong>Length of walk:</strong>
           <%= @walk.distance %> km
         </p>
       </div>
+
+      <div class="col-sm-6">
+        <p>&#127783; &#127752; &#127774; &#127785;</p>
+        <p>
+          <%= react_component 'WalkWeather' %>
+        </p>
+      </div>
+
     </div>
   </div>
-<br>
-<p> Posted by <%= @walk.user.username %> </p>
+      
+      <br>
+      <p> Posted by <%= @walk.user.username %> </p>
 
-<p>
-  Tags:
-  <% @walk.tags.each do |tag| %>
-    <%= link_to tag.name, walk_tag_path(tag) %>
-  <% end %>
-</p>
+        <p>
+          Tags:
+          <% @walk.tags.each do |tag| %>
+            <%= link_to tag.name, walk_tag_path(tag) %>
+          <% end %>
+        </p>
 
-<p>
-  <%= react_component 'WalkWeather' %>
-</p>
+        
                     
-<h2>Comments</h2>
-<% @walk.comments.each do |comment| %>
-  <p>
-    <strong><%= comment.user.username %> says </strong>
-  </p>
-  <p>
-    <%= comment.body %>
-  </p>
+        <h2>Comments</h2>
+        <% @walk.comments.each do |comment| %>
+          <p>
+            <strong><%= comment.user.username %> says </strong>
+          </p>
+          <p>
+            <%= comment.body %>
+          </p>
 
-  <p>
-  <%= link_to 'Delete Comment', [comment.walk, comment],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-</p>
-<% end %>
+          <p>
+          <%= link_to 'Delete Comment', [comment.walk, comment],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+        </p>
+        <% end %>
 
-<h2>Add a comment:</h2>
-<%= form_with(model: [ @walk, @walk.comments.build ],
-local: true) do |form| %>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-  <button type="form.submit">add comment</button>
-  </p>
-<% end %>
+      <h2>Add a comment:</h2>
+      <%= form_with(model: [ @walk, @walk.comments.build ],
+      local: true) do |form| %>
+        <p>
+          <%= form.label :body %><br>
+          <%= form.text_area :body %>
+        </p>
+        <p>
+        <button type="form.submit">add comment</button>
+        </p>
+      <% end %>
+
+
+
+
+</section>
