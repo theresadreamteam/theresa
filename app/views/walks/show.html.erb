@@ -8,11 +8,11 @@
       
       <span class="navbar-text"><% if current_user.liked? @walk %>
             <div> <%= link_to like_walk_path(@walk, 'unlike'), class: "liked-btn",
-            method: :put, remote: :true do %> unlike </div>
+            method: :put, remote: :true do %> Liked </div>
                   <% end%>
           <% else %>
             <div> <%= link_to like_walk_path(@walk, 'like'), class: "like-btn",
-            method: :put, remote: :true do %> like </div>
+            method: :put, remote: :true do %> Like </div>
                   <% end%>
           <% end%>
           </span>
@@ -21,11 +21,14 @@
   <div class="collapse navbar-collapse" id="navbarText">
     
     <span class="navbar-text">
-      <%= link_to 'Edit', edit_walk_path(@walk) %> |
-<%= link_to 'Delete', walk_path(@walk),
+      <%= link_to 'Edit', edit_walk_path(@walk) %> </span>
+      <span class="navbar-text">
+      <%= link_to 'Delete', walk_path(@walk),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', walks_path %> | 
+              data: { confirm: 'Are you sure?' } %> </span>
+      <span class="navbar-text">
+      <%= link_to 'Back', walks_path %> </span>
+      <span class="navbar-text">
       <%= link_to 'Add to Trip', tripping_path(@walk) %>
     </span>
   </div>
