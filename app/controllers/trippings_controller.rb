@@ -10,7 +10,7 @@ class TrippingsController < ApplicationController
     @tripping = Tripping.new(tripping_params)
     @tripping.save
     # end
-    redirect_to '/walks/1'
+    redirect_to '/mytrips'
   end
 
   private
