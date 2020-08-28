@@ -84,12 +84,16 @@ We spent the first two days aiming to deploy on Heroku the following MVP that co
 - See all the walks that have been created on the map
 - Show a circle of where you can get to within 1 hour shown on the map
 
-
 ### Model
+
+To be inserted from the following link:
+
+https://app.diagrams.net/?state=%7B%22ids%22:%5B%221Ljpxx8x9MdulFTPIjrjEQ0TcDtc09hDK%22%5D,%22action%22:%22open%22,%22userId%22:%22116151611041158069403%22%7D
 
 ### Testing
 RSpec
 `bundle exec rspec` to run local tests
+`open coverage/index.html`
 
 CircleCI
 run `gem update --system` to get the error 
@@ -97,3 +101,14 @@ run `gem update --system` to get the error
 
 Run webpage locally
 `rails s` then go to localhost:3000
+
+### Test Coverage
+
+44.73% Test Coverage (This will be improved)
+
+### Difficulties faced
+
+- Travis CI
+- Limitations on APIs
+- Working as a team of 3 meaning difficult to pair
+
