@@ -190,8 +190,8 @@ class MapRender extends React.Component {
 
     console.log(event.target.value.length > 6)
       if (event.target.value.length >= 5) {
-        var testweb = "http://api.postcodes.io/postcodes/"+event.target.value+"/validate"
-        var website = "http://api.postcodes.io/postcodes/"+event.target.value
+        var testweb = "https://api.postcodes.io/postcodes/"+event.target.value+"/validate"
+        var website = "https://api.postcodes.io/postcodes/"+event.target.value
         console.log(website)
 
         new HttpClient().get(testweb, function(response) {
