@@ -212,7 +212,7 @@ class MapRender extends React.Component {
               }
           })
 
-          setTimeout(() => {  this.resetMap(coordinates[0],coordinates[1]); }, 2000);
+          setTimeout(() => {  this.resetMap(coordinates[0],coordinates[1]); }, 4000);
 
       }
       
